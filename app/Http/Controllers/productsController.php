@@ -2,40 +2,67 @@
 
 namespace App\Http\Controllers;
 
+use App\Media_product;
 use App\Product;
+use App\Site;
 use Illuminate\Http\Request;
 
 class productsController extends Controller
 {
-    public function insertProduct(){
-        $productName=$_GET['productName'];
-        $productDescri=$_GET['productDescri'];
-        $price=$_GET['price'];
-        $compareAtPrice=$_GET['compareAtPrice'];
-        $costPerItem=$_GET['costPerItem'];
+    public function insertProduct( Request $request){
+        $this->validate($request, [
 
-        $barcode=$_GET['barcode'];
-        $inventoryPolicy=$_GET['inventoryPolicy'];
-        $quantity=$_GET['quantity'];
+            'filename' => 'required',
+            'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+
+        ]);
+        $path='';
+
+        if($request->hasfile('filename'))
+        {
+
+            foreach($request->file('filename') as $image)
+            {
+                $images=new Media_product();
+                $name=$image->getClientOriginalName();
+                $image->move(public_path().'/images/', $name);
+                $data[] = $name;
+                $path=public_path().'/images/'.$name;
+                $images->path=$path;
+                $images->product_id=1;
+                $images->site_id=1;
+                $images->save();
+            }
+        }
+
+        $productName=$_POST['productName'];
+        $productDescri=$_POST['productDescri'];
+        $price=$_POST['price'];
+        $compareAtPrice=$_POST['compareAtPrice'];
+        $costPerItem=$_POST['costPerItem'];
+
+        $barcode=$_POST['barcode'];
+        $inventoryPolicy=$_POST['inventoryPolicy'];
+        $quantity=$_POST['quantity'];
 
 
-        $weight=$_GET['weight'];
-        $country=$_GET['country'];
-        $hsCode=$_GET['hsCode'];
-        $fulfilmentService=$_GET['fulfilmentService'];
+        $weight=$_POST['weight'];
+        $country=$_POST['country'];
+        $hsCode=$_POST['hsCode'];
+        $fulfilmentService=$_POST['fulfilmentService'];
 
-        $pageTitle=$_GET['pageTitle'];
-        $metaDescription=$_GET['metaDescription'];
-        $urlhandle=$_GET['url&handle'];
+        $pageTitle=$_POST['pageTitle'];
+        $metaDescription=$_POST['metaDescription'];
+        $urlhandle=$_POST['url&handle'];
 
 
 
         $product=new Product();
-
-        $product->site_id=1;
+        $currentSite=Site::with('user')->where(Auth::User()->id)->get();
+        $product->site_id=$currentSite->id;
         $product->product_name=$productName;
         $product->product_description=$productDescri;
-        $product->product_image="nskdie";
+
         $product->price=$price;
         $product->compare_at_price=$compareAtPrice;
         $product->cost_per_item=$costPerItem;
@@ -119,5 +146,11 @@ class productsController extends Controller
         $product->	urlhandle=$urlhandle;
         $product->save();
         return back()->with('success', 'Product updated successfully');
+    }
+
+    public function searchProductByName(){
+        $productName=$_GET['productName'];
+        $selectedProduct=Product::where('product_name','$productName')->get();
+        return view( 'searchProductByName')->with ('products',$selectedProduct);
     }
 }

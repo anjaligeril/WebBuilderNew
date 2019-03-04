@@ -29,8 +29,15 @@ Route::get('/upload_productImages', function () {
     return view('upload_productImages');
 });
 
+Route::get('/searchProductName', function () {
+    return view('searchProductByName');
+});
 
-Route::get('/addProduct','productsController@insertProduct');
+Route::get('/autofill', function () {
+    return view('autoFillAddress');
+});
+
+Route::post('/addProduct','productsController@insertProduct');
 
 Route::get('/showAllProducts', 'productsController@showProducts');
 
@@ -42,11 +49,19 @@ Route::get('/deleteProduct/{product_id}','productsController@deleteProduct');
 
 Route::get('/updateProductInfo/{product_id}','productsController@updateProductsBefore');
 
-Route::get('//updateProductToTable/{product_id}','productsController@updateProductsAfter');
+Route::get('/updateProductToTable/{product_id}','productsController@updateProductsAfter');
+
+Route::get('/serachProductName', 'productsController@searchProductByName');
 
 Route::get('/deleteCustomer/{customer_id}','customersController@deleteCustomer');
 
-Route::post('form','mediaController@uploadImage');
+Route::get('/updateCustomerInfo/{customer_id}','customersController@updateCustomersBefore');
+
+Route::get('/updateToCustomerTable/{customer_id}','customersController@updateCustomersAfter');
+
+
+
+Route::post('/uploadImages','mediaController@uploadImage');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

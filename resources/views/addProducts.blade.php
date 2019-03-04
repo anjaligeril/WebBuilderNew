@@ -1,6 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script type="text/javascript">
+
+
+        $(document).ready(function() {
+
+            $(".btn-success").click(function(){
+                var html = $(".clone").html();
+                $(".increment").after(html);
+            });
+
+            $("body").on("click",".btn-danger",function(){
+                $(this).parents(".control-group").remove();
+            });
+
+        });
+
+    </script>
     <div class="container">
         @if (count($errors) > 0)
             <div class="alert alert-danger">
@@ -22,7 +41,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Add Product</div>
-                    <form method="GET" action="/addProduct">
+                    <form method="post" action="/addProduct" enctype="multipart/form-data">
+                        {{csrf_field()}}
 
                         <div class="form-group col-lg-8">
                             <label >Product Name</label>
@@ -32,17 +52,39 @@
                             <label >Description:</label>
                             <textarea type="text" class="form-control" id="productDescri" rows="5"  name="productDescri"></textarea>
                         </div>
+
+                        <div>
+
+
+                                <div class="input-group control-group increment" >
+                                    <input type="file" name="filename[]" class="form-control">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-success" type="button"><i class="glyphicon glyphicon-plus"></i>Add</button>
+                                    </div>
+                                </div>
+                                <div class="clone hide">
+                                    <div class="control-group input-group" style="margin-top:10px">
+                                        <input type="file" name="filename[]" class="form-control">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" type="button"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                        </div>
                         <div class="form-group col-lg-8">
-                            <label >Price</label>
+                            <label >Price: $</label>
                             <input type="text" class="form-control" id="price"  name="price">
                         </div>
                         <div class="form-group col-lg-8">
-                            <label >Compare At Price</label>
+                            <label >Compare At Price: $</label>
                             <input type="text" class="form-control" id="compareAtPrice"  name="compareAtPrice">
                         </div>
 
                         <div class="form-group col-lg-8 ">
-                            <label >Cost Per Item</label>
+                            <label >Cost Per Item: $</label>
                             <input type="text" class="form-control" id="costPerItem"  name="costPerItem">
                         </div>
 

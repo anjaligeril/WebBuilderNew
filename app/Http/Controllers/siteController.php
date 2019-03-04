@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class siteController extends Controller
 {
-public function siteRegistration()
-{
+    public function siteRegistration()
+    {
     $StoreName=$_GET['store'];
     $Domain=$_GET['Domain'];
     $Ip_add=$_GET['ipAddress'];
@@ -24,5 +24,6 @@ public function siteRegistration()
 
     $currentSite->save();
     return view('home');
-}
+    }
+
 }
