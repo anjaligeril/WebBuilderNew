@@ -22,7 +22,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Update Customer Info</div>
-                    <form method="get" action="/updateToCustomerTable/{{$updateCustomer->id}}">
+                    <form method="get" action="/home/updateToCustomerTable/{{$updateCustomer->id}}/{{$site_id}}">
 
                         <div class="form-group col-lg-8">
                             <label >First Name</label>

@@ -41,7 +41,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Add Product</div>
-                    <form method="post" action="/addProduct" enctype="multipart/form-data">
+                    <form method="post" action="/home/addProduct/{{$site_id}}" enctype="multipart/form-data">
                         {{csrf_field()}}
 
                         <div class="form-group col-lg-8">
@@ -74,14 +74,20 @@
 
 
                         </div>
+                        <div class="col-lg-8">
+                        <label for="sel1">Select category (select one):</label>
+                        <select class="form-control" id="sel1" name="sel1">
+                            @foreach($category as $singleCategory)
+                            <option>{{$singleCategory->category_name}}</option>
+                            @endforeach
+                             </select>
+
+                        </div>
                         <div class="form-group col-lg-8">
                             <label >Price: $</label>
                             <input type="text" class="form-control" id="price"  name="price">
                         </div>
-                        <div class="form-group col-lg-8">
-                            <label >Compare At Price: $</label>
-                            <input type="text" class="form-control" id="compareAtPrice"  name="compareAtPrice">
-                        </div>
+
 
                         <div class="form-group col-lg-8 ">
                             <label >Cost Per Item: $</label>
@@ -100,15 +106,11 @@
                             <input type="text" class="form-control" id="barcode"  name="barcode">
                         </div>
                         <div class="form-group col-lg-8">
-                            <label >Inventory Policy</label>
-                            <input type="text" class="form-control" id="inventoryPolicy"  name="inventoryPolicy">
-                        </div>
-                        <div class="form-group col-lg-8">
                             <label >Quantity</label>
                             <input type="text" class="form-control" id="quantity"  name="quantity">
                         </div>
                         <div class="checkbox">
-                            <label><input type="checkbox" value="out">Out Off Stock</label>
+                            <label><input type="checkbox" value="out">Out Of Stock</label>
                         </div>
                         <div class="checkbox">
                             <label><input type="checkbox" value="physical">Physical Product</label>
@@ -121,29 +123,7 @@
                             <label >Country Of Origin</label>
                             <input type="text" class="form-control" id="country"  name="country">
                         </div>
-                        <div class="form-group col-lg-8">
-                            <label >HS CODE</label>
-                            <input type="text" class="form-control" id="hsCode"  name="hsCode">
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >Fulfillment Service </label>
-                            <input type="text" class="form-control" id="fulfilmentService"  name="fulfilmentService">
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="seo">SEO Listing</label>
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >Page Title </label>
-                            <input type="text" class="form-control" id="pageTitle"  name="pageTitle">
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >Meta Description </label>
-                            <input type="text" class="form-control" id="metaDescription"  name="metaDescription">
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >URL and Handle </label>
-                            <input type="text" class="form-control" id="url&handle"  name="url&handle">
-                        </div>
+
                         <button type="submit" class="btn btn-default"  >Submit</button>
                     </form>
 

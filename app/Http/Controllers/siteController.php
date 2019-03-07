@@ -23,7 +23,17 @@ class siteController extends Controller
     $currentSite->user_id=$user_id;
 
     $currentSite->save();
-    return view('home');
+
+        $currentSites=Site::where('user_id',$user_id)->get();
+
+        return view('dashBoard')->with('sites',$currentSites);
+    }
+
+    public function showCurrentUserSites(){
+       $user_id=Auth::User()->id;
+       $currentSites=Site::where('user_id',$user_id)->get();
+
+       return view('dashBoard')->with('sites',$currentSites);
     }
 
 }

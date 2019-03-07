@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class customersController extends Controller
 {
-    public function insertCustomer(){
+    public function insertCustomer($site_id){
         $firstName=$_GET['firstName'];
         $lastName=$_GET['lastName'];
         $email=$_GET['email'];
@@ -26,7 +26,7 @@ class customersController extends Controller
 
 
         $customer=new Customer();
-        $customer->site_id=1;
+        $customer->site_id=$site_id;
         $customer->first_name=$firstName;
         $customer->last_name=$lastName;
         $customer->email=$email;
@@ -42,21 +42,22 @@ class customersController extends Controller
         return back()->with('success', 'Customer details added successfully');
     }
 
-    public function showCutomers(){
-        $allCustomers=Customer::all();
-        return view( 'showAllCustomers')->with ('customers',$allCustomers);
+    public function showCustomers($site_id){
+        $allCustomers=Customer::where('site_id',$site_id)->get();
+
+        return view( 'showAllCustomers')->with (['customers'=>$allCustomers, 'site_id'=>$site_id]);
     }
 
     public function deleteCustomer($customer_id){
         Customer::destroy($customer_id);
         return back()->with('success', 'Customer deleted successfully');
     }
-    public function updateCustomersBefore($Customer_id){
+    public function updateCustomersBefore($Customer_id,$site_id){
         $selectedCustomer=Customer::find($Customer_id);
-        return view('updateCustomerInfo')->with('updateCustomer',$selectedCustomer);
+        return view('updateCustomerInfo')->with(['updateCustomer'=>$selectedCustomer,'site_id'=>$site_id]);
     }
 
-    public function updateCustomersAfter($Customer_id){
+    public function updateCustomersAfter($Customer_id,$site_id){
         $firstName=$_GET['firstName'];
         $lastName=$_GET['lastName'];
         $email=$_GET['email'];
@@ -75,7 +76,7 @@ class customersController extends Controller
 
 
         $selectedcustomer=Customer::find($Customer_id);
-        $selectedcustomer->site_id=1;
+        $selectedcustomer->site_id=$site_id;
         $selectedcustomer->first_name=$firstName;
         $selectedcustomer->last_name=$lastName;
         $selectedcustomer->email=$email;
@@ -88,7 +89,15 @@ class customersController extends Controller
         $selectedcustomer->country=$country;
 
         $selectedcustomer->save();
-        return redirect('showAllCustomers')->with('success', 'Customer updated successfully');
+        return back()->with('success', 'Customer updated successfully');
+    }
+
+    public function searchCustomerByEmail($site_id){
+
+        $customertEmail=$_GET['email'];
+        $selectedCustomer=Customer::where('email',$customertEmail)->get();
+        //return $selectedProduct;
+        return view( 'showAllCustomers')->with (['customers'=>$selectedCustomer, 'site_id'=>$site_id]);
     }
 
 }

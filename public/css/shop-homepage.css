@@ -1,0 +1,30 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template-overviews/shop-homepage)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+body {
+}
+
+nav{
+  height:100px;
+  padding-top:20px;
+  font-size: 18px;
+}
+
+.navbar-brand{
+  font-size: 25px;
+}
+
+.hero_text{
+  position: absolute;
+  top:200px;
+  left:400px;
+  font-size:40px;
+  z-index: 2000;
+}
+
+footer{
+  background-color:black ;
+  color:white;
+}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Media_product;
 use App\Product;
 use App\Site;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 
 class productsController extends Controller
 {
-    public function insertProduct( Request $request){
+    public function insertProduct( Request $request,$site_id){
         $this->validate($request, [
 
             'filename' => 'required',
@@ -38,56 +39,50 @@ class productsController extends Controller
         $productName=$_POST['productName'];
         $productDescri=$_POST['productDescri'];
         $price=$_POST['price'];
-        $compareAtPrice=$_POST['compareAtPrice'];
+
         $costPerItem=$_POST['costPerItem'];
 
         $barcode=$_POST['barcode'];
-        $inventoryPolicy=$_POST['inventoryPolicy'];
+
         $quantity=$_POST['quantity'];
 
 
         $weight=$_POST['weight'];
         $country=$_POST['country'];
-        $hsCode=$_POST['hsCode'];
-        $fulfilmentService=$_POST['fulfilmentService'];
 
-        $pageTitle=$_POST['pageTitle'];
-        $metaDescription=$_POST['metaDescription'];
-        $urlhandle=$_POST['url&handle'];
 
 
 
         $product=new Product();
-        $currentSite=Site::with('user')->where(Auth::User()->id)->get();
-        $product->site_id=$currentSite->id;
+
+        $product->site_id=$site_id;
         $product->product_name=$productName;
         $product->product_description=$productDescri;
 
         $product->price=$price;
-        $product->compare_at_price=$compareAtPrice;
+
         $product->cost_per_item=$costPerItem;
         $product->charge_tax=1;
         $product->stock_keeping_unit=1;
         $product->barcode=$barcode;
-        $product->inventory_policy=$inventoryPolicy;
+
         $product->quantity=$quantity;
         $product->out_of_stock=1;
         $product->physical_product=1;
         $product->weight=$weight;
         $product->country_of_origin=$country;
-        $product->fulfilment_service=$fulfilmentService;
-        $product->hs_code=$hsCode;
-        $product->seo_listing=1;
-        $product->page_title=$pageTitle;
-        $product->meta_description=$metaDescription;
-        $product->	urlhandle=$urlhandle;
+
+
+
         $product->save();
         return back()->with('success', 'Product added successfully');
     }
 
-    public function showProducts(){
-        $allProducts=Product::all();
-        return view( 'showAllProducts')->with ('products',$allProducts);
+    public function showProducts($site_id){
+        $allProducts=Product::where('site_id',$site_id)->Paginate(2);
+
+         $allProducts;
+        return view( 'showAllProducts')->with (['products'=>$allProducts,'site_id'=>$site_id]);
     }
 
     public function deleteProduct($product_id){
@@ -95,62 +90,64 @@ class productsController extends Controller
         return back()->with('success', 'Product deleted successfully');
     }
 
-    public function updateProductsBefore($product_id){
+    public function updateProductsBefore($product_id,$site_id){
         $selectedProduct=Product::find($product_id);
-        return view('updateProductInfo')->with('updateProduct',$selectedProduct);
+        $allCategory=Category::where('site_id',$site_id)->get();
+        //return $allCategory;
+        return view('updateProductInfo')->with(['updateProduct'=>$selectedProduct,'site_id'=>$site_id,'category'=>$allCategory]);
     }
-    public function updateProductsAfter($product_id){
+    public function updateProductsAfter($product_id,$site_id){
         $productName=$_GET['productName'];
         //$productDescri=$_GET['productDescri'];
         $price=$_GET['price'];
-        $compareAtPrice=$_GET['compareAtPrice'];
+
         $costPerItem=$_GET['costPerItem'];
 
         $barcode=$_GET['barcode'];
-        $inventoryPolicy=$_GET['inventoryPolicy'];
+
         $quantity=$_GET['quantity'];
 
 
         $weight=$_GET['weight'];
         $country=$_GET['country'];
-        $hsCode=$_GET['hsCode'];
-        $fulfilmentService=$_GET['fulfilmentService'];
 
-        $pageTitle=$_GET['pageTitle'];
-        $metaDescription=$_GET['metaDescription'];
-        $urlhandle=$_GET['url&handle'];
 
         $product=Product::find($product_id);
 
-        $product->site_id=1;
+        $product->site_id=$site_id;
         $product->product_name=$productName;
         //$product->product_description=$productDescri;
-        $product->product_image="nskdie";
+
         $product->price=$price;
-        $product->compare_at_price=$compareAtPrice;
+
         $product->cost_per_item=$costPerItem;
         $product->charge_tax=1;
         $product->stock_keeping_unit=1;
         $product->barcode=$barcode;
-        $product->inventory_policy=$inventoryPolicy;
+
         $product->quantity=$quantity;
         $product->out_of_stock=1;
         $product->physical_product=1;
         $product->weight=$weight;
         $product->country_of_origin=$country;
-        $product->fulfilment_service=$fulfilmentService;
-        $product->hs_code=$hsCode;
-        $product->seo_listing=1;
-        $product->page_title=$pageTitle;
-        $product->meta_description=$metaDescription;
-        $product->	urlhandle=$urlhandle;
+
         $product->save();
         return back()->with('success', 'Product updated successfully');
     }
 
-    public function searchProductByName(){
+    public function searchProductByName($id){
+
         $productName=$_GET['productName'];
-        $selectedProduct=Product::where('product_name','$productName')->get();
-        return view( 'searchProductByName')->with ('products',$selectedProduct);
+
+        $selectedProducts=Product::where('site_id',$id)->where('product_name',$productName)->get();
+
+       //return $selectedProducts;
+        return view('showAllProducts')->with (['products'=>$selectedProducts,'site_id'=>$id]);
+    }
+
+    public function getProductCategory($site_id){
+        $allCategory=Category::where('site_id',$site_id)->get();
+       // return $allCategory;
+        return view('addProducts')->with(['category'=>$allCategory,'site_id'=>$site_id]);
     }
 }

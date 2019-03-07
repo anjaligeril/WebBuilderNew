@@ -22,7 +22,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Add Customer</div>
-                    <form method="GET" action="/addCustomer">
+                    <form method="GET" action="/home/addCustomer/{{$id}}">
 
                         <div class="form-group col-lg-8">
                             <label >First Name</label>

@@ -29,6 +29,6 @@ class User extends Authenticatable
     ];
 
     public function sites(){
-        return $this->hasMany('App\Site','user_id');
+        return $this->hasMany('App\Site');
     }
 }

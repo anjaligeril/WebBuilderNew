@@ -21,8 +21,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Add Product</div>
-                    <form method="GET" action="/updateProductToTable/{{$updateProduct->id}}">
+                    <div class="card-header">Update Product Info</div>
+                    <form method="GET" action="/home/updateProductToTable/{{$updateProduct->id}}/{{$site_id}}">
 
                         <div class="form-group col-lg-8">
                             <label >Product Name</label>
@@ -32,13 +32,19 @@
                             <label >Description:</label>
                             <textarea type="text" class="form-control" id="productDescri" rows="5"  name="productDescri " >{{$updateProduct->product_description}}</textarea>
                         </div>
+
                         <div class="form-group  col-lg-8">
                             <label >Price</label>
                             <input type="text" class="form-control" id="price"  name="price" value="{{$updateProduct->price}}">
                         </div>
-                        <div class="form-group col-lg-8">
-                            <label >Compare At Price</label>
-                            <input type="text" class="form-control" id="compareAtPrice"  name="compareAtPrice" value="{{$updateProduct->compare_at_price}}">
+                        <div class="col-lg-8">
+                            <label for="sel1">Select category (select one):</label>
+                            <select class="form-control" id="sel1" name="sel1">
+                                @foreach($category as $singleCategory)
+                                    <option>{{$singleCategory->category_name}}</option>
+                                @endforeach
+                            </select>
+
                         </div>
 
                         <div class="form-group col-lg-8 ">
@@ -57,10 +63,7 @@
                             <label >Barcode</label>
                             <input type="text" class="form-control" id="barcode"  name="barcode" value="{{$updateProduct->barcode}}">
                         </div>
-                        <div class="form-group col-lg-8">
-                            <label >Inventory Policy</label>
-                            <input type="text" class="form-control" id="inventoryPolicy"  name="inventoryPolicy" value="{{$updateProduct->inventory_policy}}">
-                        </div>
+
                         <div class="form-group col-lg-8">
                             <label >Quantity</label>
                             <input type="text" class="form-control" id="quantity"  name="quantity" value="{{$updateProduct->quantity}}">
@@ -79,29 +82,7 @@
                             <label >Country Of Origin</label>
                             <input type="text" class="form-control" id="country"  name="country" value="{{$updateProduct->country_of_origin}}">
                         </div>
-                        <div class="form-group col-lg-8">
-                            <label >HS CODE</label>
-                            <input type="text" class="form-control" id="hsCode"  name="hsCode" value="{{$updateProduct->hs_code}}">
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >Fulfillment Service </label>
-                            <input type="text" class="form-control" id="fulfilmentService"  name="fulfilmentService" value="{{$updateProduct->fulfilment_service}}">
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="seo">SEO Listing</label>
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >Page Title </label>
-                            <input type="text" class="form-control" id="pageTitle"  name="pageTitle" value="{{$updateProduct->page_title}}">
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >Meta Description </label>
-                            <input type="text" class="form-control" id="metaDescription"  name="metaDescription" value="{{$updateProduct->meta_description}}">
-                        </div>
-                        <div class="form-group col-lg-8">
-                            <label >URL and Handle </label>
-                            <input type="text" class="form-control" id="url&handle"  name="url&handle" value="{{$updateProduct->urlhandle}}">
-                        </div>
+
                         <button type="submit" class="btn btn-default"  >Submit</button>
                     </form>
 

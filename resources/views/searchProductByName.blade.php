@@ -7,7 +7,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Search Product</div>
-                    <form method="GET" action="/serachProductName">
+                    <form method="GET" action="/home/searchProductName1/{$id}">
 
 
                             <input type="text" class="col-6" id="productName"  name="productName" placeholder="enter the product name">
@@ -19,8 +19,10 @@
                 </div>
                 <div class="row ">
 
-                    <div class="card">
-                        <div class="card-header">Product</div>
+                    @if(isset($_GET['productName']))
+
+                    <div class="col-lg-9">
+                        <h4 class="">Product</h4>
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -45,14 +47,15 @@
                                     <td>{{$singleProduct->price}}</td>
                                     <td>{{$singleProduct->barcode}}</td>
                                     <td>{{$singleProduct->quantity}}</td>
-                                    <td><a class="btn btn-danger" href="/deleteProduct/{{$singleProduct->id}}">Delete</a></td>
-                                    <td><a class="btn btn-success" href="/updateProductInfo/{{$singleProduct->id}}">Update</a></td>
+                                    <td><a class="btn btn-danger" href="/home/deleteProduct/{{$singleProduct->id}}">Delete</a></td>
+                                    <td><a class="btn btn-success" href="/home/updateProductInfo/{{$singleProduct->id}}">Update</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
                     </div>
 
+                    @endif
                 </div>
             </div>
         </div>
