@@ -41,7 +41,7 @@
 
                 <br><br>
 
-                   
+
 
                 <label>Update The Hero Text</label>
 

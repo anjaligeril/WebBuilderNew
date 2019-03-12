@@ -11,19 +11,17 @@
 |
 */
 
+/* Welcome page  */
 Route::get('/', function () {
     return view('welcome');
 });
 
-//Route::get('/basicTheme', function () {
- //   return view('basicTheme');
-//});
-
-
-
 Route::get('/customizeTheme', function () {
     return view('customizeTheme');
 });
+
+
+
 Route::prefix('/home')->group(function () {
     //Route::get('/addProducts/{id}', function ($id) {
 
@@ -93,11 +91,22 @@ Route::prefix('/home')->group(function () {
 
     Route::post('/settingTheme/{id}', 'themesController@setTheme');
 
-    Route::get('//basicTheme/{id}', 'themesController@getTheme');
+    Route::get('/basicTheme/{id}', 'themesController@getTheme');
 
+    Route::get('/basicTheme/addToCart/{site_id}/{product_id}','cartsController@addToCart');
+
+
+    Route::get('/checkout/{id}', function($id) {
+        return view('checkout')->with('id',$id);
+    });
+
+    Route::get('/basicTheme/AddcheckOut/{site_id}','ordersController@addToOrder');
 
 });
 
+
+
+Route::post('/customerLogin/login/{site_id}','customersController@login');
 
 Route::get('/home/{id}', function($id) {
     return view('home')->with('id',$id);
@@ -108,6 +117,9 @@ Route::get('/addNewSite', function () {
 });
 
 
+Route::get('/customerLogin/{site_id}', function($site_id) {
+    return view('customerLogin')->with('site_id',$site_id);
+});
 
 Route::get('/dashBoard','siteController@showCurrentUserSites');
 

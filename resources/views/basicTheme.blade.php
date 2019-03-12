@@ -18,6 +18,22 @@
 
 <body>
 
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 <!-- Navigation -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -28,10 +44,15 @@
             <li class="active"><a href="#">Home</a></li>
 
         </ul>
+
+        @if(isset($_SESSION['customer_id']))
+            <a>logout</a>
+            @else
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="/customerLogin/{{$site_id}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         </ul>
+            @endif
     </div>
 </nav>
 
@@ -49,102 +70,26 @@
             <h1 class="text-center">Our Products</h1>
         </div>
             <div class="row">
-
+                @foreach($products as $singleProduct)
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="{{asset('images/product.jpg')}}" height="250px" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item One</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="{{asset('images/product.jpg')}}" height="250px" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item Two</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
+                        <a href="#"><img class="card-img-top" src="{{$singleProduct->image_path}}" height="150px"  alt=""></a>
 
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="{{asset('images/product.jpg')}}" height="250px" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="#">Item Three</a>
+                                <a href="#">{{$singleProduct->product_name}}</a>
                             </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                            <h5>{{$singleProduct->price}}</h5>
+                            <p class="card-text">{{$singleProduct->product_description}}</p>
+                            <a href="/home/basicTheme/addToCart/{{$site_id}}/{{$singleProduct->id}}" class="btn btn-success">Add cart</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="{{asset('images/product.jpg')}}" height="250px" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item Four</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-4 col-sm-6">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="{{asset('images/product.jpg')}}" height="250px" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item Five</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="card h-100">
-                        <a href="#"><img class="card-img-top" src="{{asset('images/product.jpg')}}" height="250px" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="#">Item Six</a>
-                            </h4>
-                            <h5>$24.99</h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
 
             </div>
             <!-- /.row -->

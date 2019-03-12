@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Media_product;
+use App\Product;
 use App\Site;
 use App\Theme;
 use Illuminate\Http\Request;
@@ -43,8 +45,8 @@ class themesController extends Controller
 
     public function getTheme($site_id){
         $currentTheme=Theme::where('site_id',$site_id)->first();
-
-        return view('basicTheme')->with('theme1',$currentTheme);
+        $currentProduct=Product::where('site_id',$site_id)->get();
+        return view('basicTheme')->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);
 
     }
 }

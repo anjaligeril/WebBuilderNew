@@ -14,7 +14,6 @@ class mediaController extends Controller
             'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
         ]);
-        $path='';
 
         if($request->hasfile('filename'))
         {
@@ -25,7 +24,7 @@ class mediaController extends Controller
                 $name=$image->getClientOriginalName();
                 $image->move(public_path().'/images/', $name);
                 $data[] = $name;
-                $path=public_path().'/images/'.$name;
+                $path='/images/'.$name;
                 $images->path=$path;
                 $images->product_id=1;
                 $images->site_id=1;

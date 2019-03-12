@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Product;
+use App\Theme;
 use Illuminate\Http\Request;
 
 class customersController extends Controller
@@ -99,5 +101,25 @@ class customersController extends Controller
         //return $selectedProduct;
         return view( 'showAllCustomers')->with (['customers'=>$selectedCustomer, 'site_id'=>$site_id]);
     }
+
+    public function login($site_id){
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $currentCustomer=Customer::where('email',$email)->first();
+        $currentTheme=Theme::where('site_id',$site_id)->first();
+        if($currentCustomer->email==$email && $currentCustomer->password==$password){
+            session_start();
+            $_SESSION["customer_id"]=$currentCustomer->id;
+            $currentProduct=Product::where('site_id',$site_id)->get();
+            return view('basicTheme')->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);
+
+           // return view('basicTheme')->with(['theme1'=>$currentTheme,'site_id'=>$site_id]);
+        }else{
+            return back()->with('error', 'Incorrect password or email');
+        }
+
+
+    }
+
 
 }

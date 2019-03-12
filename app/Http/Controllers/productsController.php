@@ -24,15 +24,12 @@ class productsController extends Controller
 
             foreach($request->file('filename') as $image)
             {
-                $images=new Media_product();
+
                 $name=$image->getClientOriginalName();
                 $image->move(public_path().'/images/', $name);
                 $data[] = $name;
-                $path=public_path().'/images/'.$name;
-                $images->path=$path;
-                $images->product_id=1;
-                $images->site_id=1;
-                $images->save();
+                $path='/images/'.$name;
+
             }
         }
 
@@ -58,7 +55,7 @@ class productsController extends Controller
         $product->site_id=$site_id;
         $product->product_name=$productName;
         $product->product_description=$productDescri;
-
+        $product->image_path=$path;
         $product->price=$price;
 
         $product->cost_per_item=$costPerItem;
