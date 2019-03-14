@@ -47,12 +47,12 @@
 
         @if(isset($_SESSION['customer_id']))
             <a>logout</a>
-            @else
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/customerLogin/{{$site_id}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        </ul>
-            @endif
+        @else
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/customerLogin/{{$site_id}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+        @endif
     </div>
 </nav>
 
@@ -62,15 +62,15 @@
     <div class="row">
 
 
-         <div class=" hero col-lg-12">
-             <image src="{{$theme1->hero_image_path}}" height="600px" width="100%"/>
-<h2 class=" hero_text text-center">{{$theme1->hero_text}}</h2>
-         </div>
+        <div class=" hero col-lg-12">
+            <image src="{{$theme1->hero_image_path}}" height="600px" width="100%"/>
+            <h2 class=" hero_text text-center">{{$theme1->hero_text}}</h2>
+        </div>
         <div class="row">
             <h1 class="text-center">Our Products</h1>
         </div>
-            <div class="row">
-                @foreach($products as $singleProduct)
+        <div class="row">
+            @foreach($products as $singleProduct)
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="card h-100">
 
@@ -89,16 +89,16 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
-
-            </div>
-            <!-- /.row -->
+            @endforeach
 
         </div>
-        <!-- /.col-lg-9 -->
+        <!-- /.row -->
 
     </div>
-    <!-- /.row -->
+    <!-- /.col-lg-9 -->
+
+</div>
+<!-- /.row -->
 
 </div>
 <!-- /.container -->
@@ -116,3 +116,4 @@
 </body>
 
 </html>
+

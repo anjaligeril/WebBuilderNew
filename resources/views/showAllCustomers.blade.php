@@ -100,5 +100,4 @@
         </div>
     </div>
 
-    <
-@endsection
+    @endsection

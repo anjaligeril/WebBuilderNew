@@ -44,6 +44,7 @@ class themesController extends Controller
     }
 
     public function getTheme($site_id){
+
         $currentTheme=Theme::where('site_id',$site_id)->first();
         $currentProduct=Product::where('site_id',$site_id)->get();
         return view('basicTheme')->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);

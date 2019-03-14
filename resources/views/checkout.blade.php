@@ -22,11 +22,11 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Shipping Address</div>
-                    <form method="GET" action="/home/basicTheme/AddcheckOut/{{$id}}">
+                    <form method="GET" action="/home/basicTheme/AddCheckOut/{{$id}}">
 
                         <div class="form-group col-lg-8">
                             <label >Full Name</label>
-                            <input type="text" class="form-control" id="firstName"  name="firstName">
+                            <input type="text" class="form-control" id="fullName"  name="fullName">
                         </div>
                         <div class="form-group col-lg-8">
                             <label >Email</label>

@@ -20,6 +20,8 @@
                 <a href="addCategories/{{$id}}">Add Category</a>
                 <a href="showCategories/{{$id}}">show Category</a>
 <br/>
+                <a href="showAllOrders/{{$id}}">show Orders</a>
+                <br/>
                 <a href="setTheme/{{$id}}">Customize Theme</a>
                 <a href="basicTheme/{{$id}}">Visit Your Site</a>
             </div>

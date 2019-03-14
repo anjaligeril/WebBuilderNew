@@ -27,7 +27,27 @@
             </div>
         @endif
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-lg-3">
+                <div class="card-header">Dashboard</div>
+                <a href="addProducts/{{$site_id}}">Add products</a>
+                <a href="/home/showAllProducts/{{$site_id}}">Show all products</a>
+                <a href="/home/searchProductName/{{$site_id}}">Find Product by name </a>
+
+                <br/>
+
+                <a href="/home/addCustomers/{{$site_id}}">Customer Registration</a>
+                <a href="/home/showAllCustomers/{{$site_id}}">Show All Customers</a>
+                <a href="/home/searchCustomerEmail">Find Customer by email</a>
+                <br/>
+                <a href="/home/addCategories/{{$site_id}}">Add Category</a>
+                <a href="/home/showCategories/{{$site_id}}">show Category</a>
+                <br/>
+                <a href="/home/showAllOrders/{{$site_id}}">show Orders</a>
+                <br/>
+                <a href="/home/setTheme/{{$site_id}}">Customize Theme</a>
+                <a href="/home/basicTheme/{{$site_id}}">Visit Your Site</a>
+            </div>
+            <div class="col-lg-9">
                 <div class="card">
                     <div class="card-header">Add Product</div>
                     <form method="post" action="/home/addProduct/{{$site_id}}" enctype="multipart/form-data">

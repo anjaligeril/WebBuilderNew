@@ -100,7 +100,9 @@ Route::prefix('/home')->group(function () {
         return view('checkout')->with('id',$id);
     });
 
-    Route::get('/basicTheme/AddcheckOut/{site_id}','ordersController@addToOrder');
+    Route::get('/basicTheme/AddCheckOut/{site_id}','ordersController@addToOrder');
+
+    Route::get('/showAllOrders/{id}', 'ordersController@showOrders');
 
 });
 
