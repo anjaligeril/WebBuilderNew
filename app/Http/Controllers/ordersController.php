@@ -59,4 +59,10 @@ class ordersController extends Controller
         return view('ViewOrders')->with(['orders'=>$currentOrder,'site_id'=>$site_id,'orderProduct'=>$currentOrderProduct]);
 
     }
+
+    public function updateStatus($site_id,$order_id){
+$status=$_GET['status'];
+return $status;
+;
+    }
 }

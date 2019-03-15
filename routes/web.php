@@ -15,44 +15,67 @@
 Route::get('/', function () {
     return view('welcome');
 });
-/* */
+/* setting the theme from outside*/
 
 Route::get('/setTheme/{id}', function ($id) {
     return view('settingsTheme')->with('id',$id);
 });
 
-Route::prefix('/home')->group(function () {
-    //Route::get('/addProducts/{id}', function ($id) {
+/* prefix home*/
 
-       // return view('addProducts')->with('id',$id);
-   // });
+Route::prefix('/home')->group(function () {
+
+    /**/
+
     Route::get('/customizeTheme/{id}', function ($id) {
         return view('customizeTheme')->with('id',$id);
     });
 
+    /**/
+
     Route::get('/setTheme/{id}', function ($id) {
         return view('settingsTheme')->with('id',$id);
     });
+
+    /**/
+
     Route::get('/showAllProducts/{id}', 'productsController@showProducts');
 
+    /**/
 
     Route::get('/upload_productImages', function () {
         return view('upload_productImages');
     });
+
+    /**/
+
    Route::get('/searchProductName/{id}', function ($id) {
        return view('searchProductByName')->with('id',$id);
    });
+
+    /**/
+
     Route::get('/autofill', function () {
         return view('autoFillAddress');
     });
+
+    /**/
+
     Route::get('/addCategories/{site_id}', function ($site_id) {
         return view('addCategory')->with('id',$site_id);
     });
 
+    /**/
+
     Route::get('/searchCustomerEmail', function () {
         return view('searchCustomerByEmail');
     });
+
+    /**/
+
     Route::get('/addProducts/{id}','productsController@getProductCategory');
+
+    /**/
 
     Route::post('/addProduct/{id}','productsController@insertProduct');
 
@@ -105,7 +128,17 @@ Route::prefix('/home')->group(function () {
 
     Route::get('/showAllOrders/{id}', 'ordersController@showOrders');
 
+    Route::get('/addCustomers/{id}', function ($id) {
+        return view('addCustomers')->with('id',$id);
+    });
+    Route::get('/addCustomer/{id}','customersController@insertCustomer');
+
+    Route::get('/showAllOrders/updateStatus/{id}/{order_id}','ordersController@updateStatus');
+
+    Route::get('/basicTheme/logout/{id}', 'customersController@logout');
 });
+
+
 Route::get('/basicTheme/{id}', 'themesController@getTheme');
 Route::get('/addCustomers/{id}', function ($id) {
     return view('addCustomers')->with('id',$id);

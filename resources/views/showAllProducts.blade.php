@@ -48,15 +48,7 @@
                             <button type="submit" class="btn btn-default"  >search</button>
                         </form>
 </div>
-                        <div class="col-lg-4">
-                            <select class="form-control" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                                <option>sort list</option>
-                                <option >A-Z</option>
-                                <option>Z-A</option>
-                                <option>Low-High</option>
-                                <option>High-Low</option>
-                            </select>
-                        </div>
+
 
 
                 </div>
@@ -68,6 +60,7 @@
                         <tr>
                             <th>product_id</th>
                             <th>site_id</th>
+                            <th>product Image</th>
                             <th>product_name</th>
                            <th>product_description</th>
                            <th>price </th>
@@ -84,6 +77,7 @@
                                 <tr>
                                     <td>{{$singleProduct->id}}</td>
                                     <td>{{$singleProduct->site_id}}</td>
+                                    <td><img src="{{$singleProduct->image_path}}" height="100px" width="100px"></td>
                                     <td>{{$singleProduct->product_name}}</td>
                                     <td>{{$singleProduct->product_description}}</td>
                                     <td>{{$singleProduct->price}}</td>
@@ -93,12 +87,13 @@
                                     <td><a class="btn btn-success" href="/home/updateProductInfo/{{$singleProduct->id}}/{{$site_id}}">Update</a></td>
                                 </tr>
                             @endforeach
-
+                            <div class="justify-content-center">{{ $products->links() }}</div>
                         @else
                         @foreach($products as $singleProduct)
                             <tr>
                                 <td>{{$singleProduct->id}}</td>
                                 <td>{{$singleProduct->site_id}}</td>
+                                <td><img src="{{$singleProduct->image_path}}" height="50px" width="50px"></td>
                                 <td>{{$singleProduct->product_name}}</td>
                                 <td>{{$singleProduct->product_description}}</td>
                                 <td>{{$singleProduct->price}}</td>
@@ -109,9 +104,10 @@
                             </tr>
                         @endforeach
                         </tbody>
+                        {{ $products->links() }}
                             @endif
                     </table>
-                    {{ $products->links() }}
+
                 </div>
 
         </div>

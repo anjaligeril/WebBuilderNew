@@ -47,8 +47,11 @@
                         <th>PostalCode</th>
                         <th>Country</th>
                         <th>Status</th>
+                        <th>Change Status</th>
+                        <th>Update Status</th>
                         <th>Products</th>
                         <th>Delete</th>
+
 
                     </tr>
                     </thead>
@@ -65,6 +68,14 @@
                                 <td>{{$singleOrder->shipping_postalcode}}</td>
                                 <td>{{$singleOrder->shipping_country}}</td>
                                 <td>{{$singleOrder->shipping_status}}</td>
+                                <form action="/home/showAllOrders/updateStatus/{{$site_id}}/{{$singleOrder->id}}">
+                                <td><select class="form-control" name="status">
+                                        <option>Complete</option>
+                                        <option>On Delivery</option>
+                                        <option>Cancelled</option>
+                                        <option>In progress</option>
+                                    </select></td><td>
+                                    <button class="btn btn-success" type="submit">Update</button></td></form>
                                 <td>@foreach($orderProduct as $singleOrderProduct )
                                         @if($singleOrder->id && $singleOrderProduct->order_id)
                                             <?php
@@ -76,7 +87,7 @@
                                 </td>
 
                                 <td><a class="btn btn-danger "  href="#">Delete</a></td>
-
+                                <td></td>
                            </tr>
                         @endforeach
                         </tbody>
@@ -92,7 +103,9 @@
                                 <td>{{$singleOrder->shipping_city}}</td>
                                 <td>{{$singleOrder->shipping_postalcode}}</td>
                                 <td>{{$singleOrder->shipping_country}}</td>
-                                <td>{{$singleOrder->shipping_status}}</td>
+                                <td>{{$singleOrder->shipping_status}}
+                                    </td>
+
                                 <td>@foreach($orderProduct as $singleOrderProduct )
                                         @if($singleOrder->id && $singleOrderProduct->order_id)
                                             <?php
@@ -103,7 +116,18 @@
                                     @endforeach
                                 </td>
                                 <td><a class="btn btn-danger "  href="#">Delete</a></td>
-
+                                <form action="/updateStatus/{{$site_id}}/{{$singleOrder->id}}" method="get">
+                                    <td>
+                                        <div class="form-group"><select class="form-control" id="status" name="status">
+                                                <option>Complete</option>
+                                                <option>On Delivery</option>
+                                                <option>Cancelled</option>
+                                                <option>In progress</option>
+                                            </select></div>
+                                    <td>
+                                        <div class="form-group">
+                                            <button class="btn btn-success" href="">Update</button></div></td>
+                                </form>
                             </tr>
                         @endforeach
                         </tbody>
@@ -112,6 +136,7 @@
             </div>
 
         </div>
+
     </div>
 
 @endsection

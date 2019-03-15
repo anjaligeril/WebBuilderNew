@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
 
 class categoriesController extends Controller
@@ -28,7 +29,9 @@ class categoriesController extends Controller
 
     public function deleteCategory($category_id){
         Category::destroy($category_id);
-        return back()->with('success', 'Customer deleted successfully');
+        Product::where('category_id',$category_id)->delete();
+
+        return back()->with('success', 'Category and products related are deleted successfully');
     }
 
     public function updateCategoryBefore($category_id,$site_id){

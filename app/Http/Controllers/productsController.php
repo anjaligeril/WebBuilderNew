@@ -36,7 +36,8 @@ class productsController extends Controller
         $productName=$_POST['productName'];
         $productDescri=$_POST['productDescri'];
         $price=$_POST['price'];
-
+$category=$_POST['sel1'];
+//return $category;
         $costPerItem=$_POST['costPerItem'];
 
         $barcode=$_POST['barcode'];
@@ -58,7 +59,7 @@ $sku=$_POST['stockKeepingUnit'];
         $product->product_description=$productDescri;
         $product->image_path=$path;
         $product->price=$price;
-
+$product->category_id=$category;
         $product->cost_per_item=$costPerItem;
 
         $product->stock_keeping_unit=$sku;
@@ -93,20 +94,44 @@ $sku=$_POST['stockKeepingUnit'];
         //return $allCategory;
         return view('updateProductInfo')->with(['updateProduct'=>$selectedProduct,'site_id'=>$site_id,'category'=>$allCategory]);
     }
-    public function updateProductsAfter($product_id,$site_id){
-        $productName=$_GET['productName'];
-        $productDescri=$_GET['productDescri'];
-        $price=$_GET['price'];
+    public function updateProductsAfter(Request $request,$product_id,$site_id){
+        $this->validate($request, [
 
-        $costPerItem=$_GET['costPerItem'];
+            'filename' => 'required',
+            'filename.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
 
-        $barcode=$_GET['barcode'];
+        ]);
+        $path='';
 
-        $quantity=$_GET['quantity'];
+        if($request->hasfile('filename'))
+        {
 
+            foreach($request->file('filename') as $image)
+            {
 
-        $weight=$_GET['weight'];
-        $country=$_GET['country'];
+                $name=$image->getClientOriginalName();
+                $image->move(public_path().'/images/', $name);
+                $data[] = $name;
+                $path='/images/'.$name;
+
+            }
+        }
+
+        $productName=$_POST['productName'];
+        $productDescri=$_POST['productDescri'];
+        $price=$_POST['price'];
+        $category=$_POST['sel1'];
+//return $category;
+        $costPerItem=$_POST['costPerItem'];
+
+        $barcode=$_POST['barcode'];
+
+        $quantity=$_POST['quantity'];
+
+        $sku=$_POST['stockKeepingUnit'];
+
+        $weight=$_POST['weight'];
+        $country=$_POST['country'];
 
 
         $product=Product::find($product_id);
@@ -115,7 +140,9 @@ $sku=$_POST['stockKeepingUnit'];
         $product->product_name=$productName;
         $product->product_description=$productDescri;
 
+        $product->image_path=$path;
         $product->price=$price;
+        $product->category_id=$category;
 
         $product->cost_per_item=$costPerItem;
 
@@ -132,11 +159,10 @@ $sku=$_POST['stockKeepingUnit'];
 
     public function searchProductByName($id){
 
-        $productName=$_GET['productName'];
+        $productDetail=$_GET['productName'];
 
-        $selectedProducts=Product::where('site_id',$id)->where('product_name',$productName)->get();
+        $selectedProducts=Product::where('site_id',$id)->where('product_name', 'like','%'.$productDetail.'%')->orwhere('price', 'like','%'.$productDetail.'%')->orwhere('product_description', 'like','%'.$productDetail.'%')->Paginate(2);
 
-       //return $selectedProducts;
         return view('showAllProducts')->with (['products'=>$selectedProducts,'site_id'=>$id]);
     }
 

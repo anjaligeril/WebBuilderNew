@@ -42,10 +42,15 @@
         </div>
 
         <?php
-        session_start();
+        if(!isset($_SESSION)) {
+            session_start();
+        }
         ?>
         @if(isset($_SESSION['customer_id']))
-            <a href="/home/logout/{{$site_id}}">logout</a>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+            <a href="/home/basicTheme/logout/{{$site_id}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li></ul>
         @else
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/addCustomers/{{$site_id}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -70,7 +75,7 @@
         </div>
         <div class="row">
             @foreach($products as $singleProduct)
-                <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="col-lg-3 col-md-3 col-sm-6">
                     <div class="card h-100">
 
                         <a href="#"><img class="card-img-top" src="{{$singleProduct->image_path}}" height="150px"  alt=""></a>

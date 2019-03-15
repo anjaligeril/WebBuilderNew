@@ -22,7 +22,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">Update Product Info</div>
-                    <form method="GET" action="/home/updateProductToTable/{{$updateProduct->id}}/{{$site_id}}">
+                    <form method="post" action="/home/updateProductToTable/{{$updateProduct->id}}/{{$site_id}}" enctype="multipart/form-data">
+                    {{csrf_field()}}
 
                         <div class="form-group col-lg-8">
                             <label >Product Name</label>
@@ -32,7 +33,20 @@
                             <label >Description:</label>
                             <textarea type="text" class="form-control" id="productDescri" rows="5"  name="productDescri " >{{$updateProduct->product_description}}</textarea>
                         </div>
+                        <div>
 
+
+                            <div class="input-group control-group increment" >
+                                <input type="file" name="filename[]" class="form-control">
+                                <div class="input-group-btn">
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
                         <div class="form-group  col-lg-8">
                             <label >Price</label>
                             <input type="text" class="form-control" id="price"  name="price" value="{{$updateProduct->price}}">
@@ -52,9 +66,7 @@
                             <input type="text" class="form-control" id="costPerItem"  name="costPerItem" value="{{$updateProduct->cost_per_item}}">
                         </div>
 
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="charge">Charge Tax</label>
-                        </div>
+
                         <div class="form-group col-lg-8">
                             <label >Stock Keeping Unit</label>
                             <input type="text" class="form-control" id="stockKeepingUnit"  name="stockKeepingUnit" value="{{$updateProduct->stock_keeping_unit}}">
@@ -68,13 +80,7 @@
                             <label >Quantity</label>
                             <input type="text" class="form-control" id="quantity"  name="quantity" value="{{$updateProduct->quantity}}">
                         </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="out">Out Off Stock</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="physical">Physical Product</label>
-                        </div>
-                        <div class="form-group col-lg-8">
+                                                <div class="form-group col-lg-8">
                             <label >Weight</label>
                             <input type="text" class="form-control" id="weight"  name="weight" value="{{$updateProduct->weight}}">
                         </div>

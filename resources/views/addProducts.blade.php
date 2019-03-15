@@ -79,7 +79,7 @@
                         <label for="sel1">Select category (select one):</label>
                         <select class="form-control" id="sel1" name="sel1">
                             @foreach($category as $singleCategory)
-                            <option>{{$singleCategory->category_name}}</option>
+                            <option value="{{$singleCategory->id}}">{{$singleCategory->category_name}}</option>
                             @endforeach
                              </select>
 
