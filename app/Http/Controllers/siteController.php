@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Site;
+use App\Theme;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,14 @@ class siteController extends Controller
     $currentSite->save();
 
         $currentSites=Site::where('user_id',$user_id)->get();
+        $ourSites=Site::where('user_id',$user_id)->first();
 
+        $defaultTheme=new Theme();
+        $defaultTheme->site_id=$ourSites->id;
+        $defaultTheme->site_name=$StoreName;
+        $defaultTheme->hero_image_path='/images/ecommerce.jpg';
+        $defaultTheme->hero_text='Welcome to Our Site';
+        $defaultTheme->save();
         return view('dashBoard')->with('sites',$currentSites);
     }
 

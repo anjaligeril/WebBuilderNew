@@ -40,16 +40,15 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="#">{{$theme1->site_name}}</a>
         </div>
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
 
-        </ul>
-
+        <?php
+        session_start();
+        ?>
         @if(isset($_SESSION['customer_id']))
-            <a>logout</a>
+            <a href="/home/logout/{{$site_id}}">logout</a>
         @else
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/addCustomers/{{$site_id}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="/customerLogin/{{$site_id}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         @endif

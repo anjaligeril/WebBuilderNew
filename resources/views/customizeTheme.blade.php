@@ -1,6 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 <style>
     .theme{
         height: 500px;
@@ -14,26 +30,26 @@
             <h4>Customize your theme</h4>
 
 <label>Update The site name</label>
-                <form action="" method="get">
-                <input type="text" class="form-control" id="Sadd"  name="site_name">
-                <br>
-                <button type="submit" class="btn btn-info">Update</button>
-                <br/>
-                </form>
-                <br><br>
-                <label>update The hero image</label>
-                <form method="post" action="#" enctype="multipart/form-data">
+                <form method="post" action="/home/settingTheme/{{$id}}" enctype="multipart/form-data">
                     {{csrf_field()}}
-                <div class="input-group control-group " >
-                    <input type="file" name="filename[]" class="form-control">
-
-                </div>
+                    <input type="text" class="form-control" id="Sadd"  name="site_name">
                     <br>
-                    <button type="submit" class="btn btn-info">Update</button>
-                </form>
-                <br><br>
-                <label>Update The Hero Text</label>
-                <form action="" method="get">
+
+                    <br><br>
+                    <label>update The hero image</label>
+
+                    <div class="input-group control-group " >
+                        <input type="file" name="filename[]" class="form-control" >
+
+                    </div>
+                    <br>
+
+                    <br><br>
+
+
+
+                    <label>Update The Hero Text</label>
+
                     <input type="text" class="form-control" id="Sadd"  name="hero_text">
                     <br>
                     <button type="submit" class="btn btn-info">Update</button>
@@ -43,7 +59,7 @@
 
             </div>
             <div class="col-lg-9 theme">
-                <iframe src="http://localhost:8000/basicTheme" height="800px" width="880px"></iframe>
+                <iframe src="http://localhost:8000/home/basicTheme/19" height="800px" width="880px"></iframe>
             </div>
 
 

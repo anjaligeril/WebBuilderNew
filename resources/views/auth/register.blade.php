@@ -41,17 +41,18 @@
 
 
 
-                        <div class="form-group col-sm-10">
-                            <label>Apt Address:</label>
 
-                                <input type="text" class="form-control" id="add"  name="add">
-                            </div>
 
                         <div class="form-group col-sm-10">
                             <label>Street Address:</label>
 
                                 <input type="text" class="form-control" id="Sadd"  name="Sadd">
                             </div>
+                        <div class="form-group col-sm-10">
+                            <label>Apt Address:</label>
+
+                            <input type="text" class="form-control" id="add"  name="add">
+                        </div>
                         <div class="form-group col-sm-10">
                             <label>City:</label>
 

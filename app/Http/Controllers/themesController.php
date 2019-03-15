@@ -27,7 +27,8 @@ class themesController extends Controller
 
             foreach($request->file('filename') as $image)
             {
-                $theme=new Theme();
+                $theme=Theme::where('site_id',$site_id)->first();
+                //return $theme;
                 $name=$image->getClientOriginalName();
                 $image->move(public_path().'/images/', $name);
                 $data[] = $name;

@@ -20,6 +20,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        html, body {
+            background-image:url({{url('images/wallpaper.jpg')}}) !important;
+            color: black;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 200;
+            height: 100%;
+            width:100%;
+            margin: 0;
+            background-size: 100% 100%;
+        }
+        </style>
 </head>
 <body>
     <div id="app">

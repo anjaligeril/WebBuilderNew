@@ -43,6 +43,7 @@ class productsController extends Controller
 
         $quantity=$_POST['quantity'];
 
+$sku=$_POST['stockKeepingUnit'];
 
         $weight=$_POST['weight'];
         $country=$_POST['country'];
@@ -59,13 +60,12 @@ class productsController extends Controller
         $product->price=$price;
 
         $product->cost_per_item=$costPerItem;
-        $product->charge_tax=1;
-        $product->stock_keeping_unit=1;
+
+        $product->stock_keeping_unit=$sku;
         $product->barcode=$barcode;
 
         $product->quantity=$quantity;
-        $product->out_of_stock=1;
-        $product->physical_product=1;
+
         $product->weight=$weight;
         $product->country_of_origin=$country;
 
@@ -95,7 +95,7 @@ class productsController extends Controller
     }
     public function updateProductsAfter($product_id,$site_id){
         $productName=$_GET['productName'];
-        //$productDescri=$_GET['productDescri'];
+        $productDescri=$_GET['productDescri'];
         $price=$_GET['price'];
 
         $costPerItem=$_GET['costPerItem'];
@@ -113,18 +113,16 @@ class productsController extends Controller
 
         $product->site_id=$site_id;
         $product->product_name=$productName;
-        //$product->product_description=$productDescri;
+        $product->product_description=$productDescri;
 
         $product->price=$price;
 
         $product->cost_per_item=$costPerItem;
-        $product->charge_tax=1;
-        $product->stock_keeping_unit=1;
+
         $product->barcode=$barcode;
 
         $product->quantity=$quantity;
-        $product->out_of_stock=1;
-        $product->physical_product=1;
+
         $product->weight=$weight;
         $product->country_of_origin=$country;
 

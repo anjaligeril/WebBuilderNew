@@ -47,14 +47,16 @@ class ordersController extends Controller
             $currentOrderProduct->price=$singleCartItem->price;
             $currentOrderProduct->save();
         }
-
-        return view('thankyou')->with('success', 'Order added successfully and products are on your way');
+        Cart::where('cart_id',$_SESSION['cart_id'])->delete();
+        return redirect('/thankyou/'.$site_id)->with('success', 'Order added successfully and products are on your way');
     }
 
     public function showOrders($site_id){
         $currentOrder=Order::where('site_id',$site_id)->get();
+        $currentOrderProduct=Order_product::where('site_id',$site_id)->get();
         //return $currentOrder;
-        return view('ViewOrders')->with(['orders'=>$currentOrder,'site_id'=>$site_id]);
+       // return $currentOrderProduct;
+        return view('ViewOrders')->with(['orders'=>$currentOrder,'site_id'=>$site_id,'orderProduct'=>$currentOrderProduct]);
 
     }
 }

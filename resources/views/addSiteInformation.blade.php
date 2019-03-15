@@ -24,6 +24,7 @@
 
                              <input type="text" class="form-control" id="pro"  name="ipAddress">
                          </div>
+
                          <button type="submit" class="btn btn-default">Submit</button>
                      </form>
                 </div>

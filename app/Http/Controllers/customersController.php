@@ -41,7 +41,13 @@ class customersController extends Controller
         $customer->country=$country;
 
         $customer->save();
-        return back()->with('success', 'Customer details added successfully');
+        $currentCustomer=Customer::where('email',$email)->first();
+        session_start();
+        $_SESSION["customer_id"] = $currentCustomer->id;
+        $currentTheme=Theme::where('site_id',$site_id)->first();
+        $currentProduct=Product::where('site_id',$site_id)->get();
+        //return $_SESSION["customer_id"];
+        return redirect('/basicTheme/'.$site_id)->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);
     }
 
     public function showCustomers($site_id){

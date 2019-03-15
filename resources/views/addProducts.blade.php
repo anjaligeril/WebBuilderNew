@@ -29,22 +29,21 @@
         <div class="row justify-content-center">
             <div class="col-lg-3">
                 <div class="card-header">Dashboard</div>
-                <a href="addProducts/{{$site_id}}">Add products</a>
+
                 <a href="/home/showAllProducts/{{$site_id}}">Show all products</a>
-                <a href="/home/searchProductName/{{$site_id}}">Find Product by name </a>
 
                 <br/>
 
-                <a href="/home/addCustomers/{{$site_id}}">Customer Registration</a>
+                <a href="/home/addCustomers/{{$site_id}}">Customer Registration</a><br>
                 <a href="/home/showAllCustomers/{{$site_id}}">Show All Customers</a>
-                <a href="/home/searchCustomerEmail">Find Customer by email</a>
+
                 <br/>
-                <a href="/home/addCategories/{{$site_id}}">Add Category</a>
+
                 <a href="/home/showCategories/{{$site_id}}">show Category</a>
                 <br/>
                 <a href="/home/showAllOrders/{{$site_id}}">show Orders</a>
                 <br/>
-                <a href="/home/setTheme/{{$site_id}}">Customize Theme</a>
+                <a href="/home/setTheme/{{$site_id}}">Customize Theme</a><br>
                 <a href="/home/basicTheme/{{$site_id}}">Visit Your Site</a>
             </div>
             <div class="col-lg-9">
@@ -96,9 +95,7 @@
                             <input type="text" class="form-control" id="costPerItem"  name="costPerItem">
                         </div>
 
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="charge">Charge Tax</label>
-                        </div>
+
                         <div class="form-group col-lg-8">
                             <label >Stock Keeping Unit</label>
                             <input type="text" class="form-control" id="stockKeepingUnit"  name="stockKeepingUnit">
@@ -111,12 +108,7 @@
                             <label >Quantity</label>
                             <input type="text" class="form-control" id="quantity"  name="quantity">
                         </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="out">Out Of Stock</label>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="physical">Physical Product</label>
-                        </div>
+
                         <div class="form-group col-lg-8">
                             <label >Weight</label>
                             <input type="text" class="form-control" id="weight"  name="weight">

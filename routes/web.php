@@ -15,26 +15,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
+/* */
 
-Route::get('/customizeTheme', function () {
-    return view('customizeTheme');
+Route::get('/setTheme/{id}', function ($id) {
+    return view('settingsTheme')->with('id',$id);
 });
-
-
 
 Route::prefix('/home')->group(function () {
     //Route::get('/addProducts/{id}', function ($id) {
 
        // return view('addProducts')->with('id',$id);
    // });
+    Route::get('/customizeTheme/{id}', function ($id) {
+        return view('customizeTheme')->with('id',$id);
+    });
+
     Route::get('/setTheme/{id}', function ($id) {
         return view('settingsTheme')->with('id',$id);
     });
     Route::get('/showAllProducts/{id}', 'productsController@showProducts');
 
-    Route::get('/addCustomers/{id}', function ($id) {
-        return view('addCustomers')->with('id',$id);
-    });
+
     Route::get('/upload_productImages', function () {
         return view('upload_productImages');
     });
@@ -55,7 +56,7 @@ Route::prefix('/home')->group(function () {
 
     Route::post('/addProduct/{id}','productsController@insertProduct');
 
-    Route::get('/addCustomer/{id}','customersController@insertCustomer');
+
 
     Route::get('/showAllCustomers/{id}', 'customersController@showCustomers');
 
@@ -105,9 +106,11 @@ Route::prefix('/home')->group(function () {
     Route::get('/showAllOrders/{id}', 'ordersController@showOrders');
 
 });
-
-
-
+Route::get('/basicTheme/{id}', 'themesController@getTheme');
+Route::get('/addCustomers/{id}', function ($id) {
+    return view('addCustomers')->with('id',$id);
+});
+Route::get('/addCustomer/{id}','customersController@insertCustomer');
 Route::post('/customerLogin/login/{site_id}','customersController@login');
 
 Route::get('/home/{id}', function($id) {
@@ -129,6 +132,8 @@ Route::get('/dashBoard','siteController@showCurrentUserSites');
 Route::post('/uploadImages','mediaController@uploadImage');
 Auth::routes();
 
-//Route::get('/home/{id}', 'HomeController@index')->name('home');
+Route::get('/thankyou/{site_id}', function($site_id) {
+    return view('thankyou')->with('site_id',$site_id);
+});
 
 Route::get('/siteRegistration','siteController@siteRegistration');

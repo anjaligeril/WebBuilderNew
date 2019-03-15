@@ -12,12 +12,14 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
+                background-image:url({{url('images/wallpaper.jpg')}});
+                color: white;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                height: 100%;
+                width:100%;
                 margin: 0;
+                background-size: 100% 100%;
             }
 
             .full-height {
@@ -49,10 +51,10 @@
             }
 
             .links > a {
-                color: #636b6f;
+                color: white;
                 padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
+                font-size: 18px;
+                font-weight: bold;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -70,7 +72,7 @@
                     @auth
                         <a href="{{ url('/dashBoard') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }} ">Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -82,17 +84,11 @@
             <div class="content">
                 <div class="title m-b-md">
                    <h4> WebBuilder</h4>
-
+                    <h6>Create your E-commerce Site in One Click </h6>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+
+
             </div>
         </div>
     </body>

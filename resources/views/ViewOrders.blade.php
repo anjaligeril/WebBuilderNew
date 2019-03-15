@@ -25,7 +25,7 @@
                     <form method="GET" action="/home/searchCustomerName1/{{$site_id}}">
 
 
-                        <input type="text" class="col-6" id="email"  name="email" placeholder="enter the customer name">
+                        <input type="text" class="col-6" id="search"  name="search" placeholder="Search">
 
 
                         <button type="submit" class="btn btn-default"  >search</button>
@@ -38,57 +38,72 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th>country</th>
+                        <th>Customer Name</th>
+                        <th>Email</th>
+                        <th>Phone no</th>
+                        <th>Address</th>
+                        <th>Apartment</th>
+                        <th>City</th>
+                        <th>PostalCode</th>
+                        <th>Country</th>
+                        <th>Status</th>
+                        <th>Products</th>
                         <th>Delete</th>
-                        <th>Update</th>
+
                     </tr>
                     </thead>
-                    @if(isset($_GET['email']))
+                    @if(isset($_GET['search']))
                         <tbody>
-                        @foreach($orders as $singleCustomer)
+                        @foreach($orders as $singleOrder)
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td><a class="btn btn-danger" href="/home/deleteCustomer/{{$singleCustomer->id}}">Delete</a></td>
-                                <td><a class="btn btn-success" href="/home/updateCustomerInfo/{{$singleCustomer->id}}/{{$site_id}}">Update</a></td>
-                            </tr>
+                                <td>{{$singleOrder->shipping_name}}</td>
+                                <td>{{$singleOrder->shipping_email}}</td>
+                                <td>{{$singleOrder->shipping_phone}}</td>
+                                <td>{{$singleOrder->shipping_address}}</td>
+                                <td>{{$singleOrder->shipping_apt}}</td>
+                                <td>{{$singleOrder->shipping_city}}</td>
+                                <td>{{$singleOrder->shipping_postalcode}}</td>
+                                <td>{{$singleOrder->shipping_country}}</td>
+                                <td>{{$singleOrder->shipping_status}}</td>
+                                <td>@foreach($orderProduct as $singleOrderProduct )
+                                        @if($singleOrder->id && $singleOrderProduct->order_id)
+                                            <?php
+                                            echo $singleOrderProduct->product_id.',';
+                                            ?>
+                                        @endif
+
+                                    @endforeach
+                                </td>
+
+                                <td><a class="btn btn-danger "  href="#">Delete</a></td>
+
+                           </tr>
                         @endforeach
                         </tbody>
                     @else
                         <tbody>
-                        @foreach($orders as $singleCustomer)
+                        @foreach($orders as $singleOrder)
                             <tr>
-                                <td>{{$singleCustomer->id}}</td>
-                                <td>{{$singleCustomer->site_id}}</td>
-                                <td>{{$singleCustomer->first_name}}</td>
-                                <td>{{$singleCustomer->last_name}}</td>
-                                <td>{{$singleCustomer->email}}</td>
-                                <td>{{$singleCustomer->phone_no}}</td>
-                                <td>{{$singleCustomer->address}}</td>
-                                <td>{{$singleCustomer->apt}}</td>
-                                <td>{{$singleCustomer->city}}</td>
-                                <td>{{$singleCustomer->postal_code}}</td>
-                                <td>{{$singleCustomer->country}}</td>
-                                <td><a class="btn btn-danger" href="/home/deleteCustomer/{{$singleCustomer->id}}">Delete</a></td>
-                                <td><a class="btn btn-success" href="/home/updateCustomerInfo/{{$singleCustomer->id}}">Update</a></td>
+                                <td>{{$singleOrder->shipping_name}}</td>
+                                <td>{{$singleOrder->shipping_email}}</td>
+                                <td>{{$singleOrder->shipping_phone}}</td>
+                                <td>{{$singleOrder->shipping_address}}</td>
+                                <td>{{$singleOrder->shipping_apt}}</td>
+                                <td>{{$singleOrder->shipping_city}}</td>
+                                <td>{{$singleOrder->shipping_postalcode}}</td>
+                                <td>{{$singleOrder->shipping_country}}</td>
+                                <td>{{$singleOrder->shipping_status}}</td>
+                                <td>@foreach($orderProduct as $singleOrderProduct )
+                                        @if($singleOrder->id && $singleOrderProduct->order_id)
+                                            <?php
+                                            echo $singleOrderProduct->product_id.',';
+                                            ?>
+                                        @endif
+
+                                    @endforeach
+                                </td>
+                                <td><a class="btn btn-danger "  href="#">Delete</a></td>
+
                             </tr>
                         @endforeach
                         </tbody>
