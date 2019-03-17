@@ -35,8 +35,9 @@ class cartsController extends Controller
            $cart->cart_id = $_SESSION['cart_id'];
            $cart->save();
            //return $currentProduct;
+
             $currentCart=Cart::where('cart_id',$_SESSION['cart_id'])->get();
-            //return $currentCart;
+
            return view('cart')->with(['site_id'=>$site_id,'carts'=>$currentCart]);
 
        }else{

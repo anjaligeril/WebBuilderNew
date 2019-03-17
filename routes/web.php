@@ -133,7 +133,7 @@ Route::prefix('/home')->group(function () {
     });
     Route::get('/addCustomer/{id}','customersController@insertCustomer');
 
-    Route::get('/showAllOrders/updateStatus/{id}/{order_id}','ordersController@updateStatus');
+    Route::get('/showAllOrders/updateStatus/{id}/','ordersController@updateStatus');
 
     Route::get('/basicTheme/logout/{id}', 'customersController@logout');
 });

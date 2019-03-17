@@ -60,9 +60,13 @@ class ordersController extends Controller
 
     }
 
-    public function updateStatus($site_id,$order_id){
-$status=$_GET['status'];
-return $status;
+    public function updateStatus($site_id){
+$orderId=$_GET['orderId'];
+$status=$_GET['sel1'];
+$currentOrder=Order::find(12);
+        $currentOrder->status=$status;
+        $currentOrder->save();
+        return back()->with('success', 'Order status updated');;
 ;
     }
 }
