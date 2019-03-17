@@ -12,6 +12,16 @@ class ordersController extends Controller
     public function addToOrder($site_id){
         session_start();
 
+
+
+        $currentCart=Cart::where('cart_id',$_SESSION['cart_id'])->get();
+
+        //return $currentCart;
+        $totalPrice=0;
+        foreach($currentCart as $singleCartItem){
+
+            $totalPrice=$totalPrice+$singleCartItem->price;
+        }
         $full_name=$_GET['fullName'];
         $email=$_GET['email'];
         $address=$_GET['address'];
@@ -32,12 +42,10 @@ class ordersController extends Controller
         $currentOrder->shipping_city=$city;
         $currentOrder->shipping_postalcode=$postalCode;
         $currentOrder->shipping_country=$country;
+        $currentOrder->total_price=$totalPrice;
         $currentOrder->save();
         $newOrder=Order::where('customer_id',$_SESSION["customer_id"])->where('site_id',$site_id)->first();
         $order_id=$newOrder->id;
-        $currentCart=Cart::where('cart_id',$_SESSION['cart_id'])->get();
-
-        //return $currentCart;
         foreach($currentCart as $singleCartItem){
             $currentOrderProduct=new Order_product();
             $currentOrderProduct->order_id=$order_id;
@@ -46,24 +54,35 @@ class ordersController extends Controller
             $currentOrderProduct->site_id=$site_id;
             $currentOrderProduct->price=$singleCartItem->price;
             $currentOrderProduct->save();
+            $totalPrice=$totalPrice+$singleCartItem->price;
         }
         Cart::where('cart_id',$_SESSION['cart_id'])->delete();
+
         return redirect('/thankyou/'.$site_id)->with('success', 'Order added successfully and products are on your way');
     }
 
     public function showOrders($site_id){
-        $currentOrder=Order::where('site_id',$site_id)->get();
-        $currentOrderProduct=Order_product::where('site_id',$site_id)->get();
+        $currentOrder=Order::where('site_id',$site_id)->paginate(5);
+        $currentOrderProduct=Order_product::where('site_id',$site_id);
         //return $currentOrder;
        // return $currentOrderProduct;
         return view('ViewOrders')->with(['orders'=>$currentOrder,'site_id'=>$site_id,'orderProduct'=>$currentOrderProduct]);
 
     }
 
+    public function searchOrders($site_id){
+        $search=$_GET['search'];
+        $currentOrder=Order::where('site_id',$site_id)->where('shipping_name', 'like','%'.$search.'%')->orwhere('shipping_email', 'like','%'.$search.'%')->orwhere('shipping_phone', 'like','%'.$search.'%')->orwhere('shipping_address', 'like','%'.$search.'%')->orwhere('shipping_city', 'like','%'.$search.'%')->orwhere('shipping_postalcode', 'like','%'.$search.'%')->orwhere('shipping_country', 'like','%'.$search.'%')->orwhere('status', 'like','%'.$search.'%')->orwhere('id', 'like','%'.$search.'%')->get();
+        $currentOrderProduct=Order_product::where('site_id',$site_id);
+        return view('ViewOrders')->with(['orders'=>$currentOrder,'site_id'=>$site_id,'orderProduct'=>$currentOrderProduct]);
+
+
+    }
+
     public function updateStatus($site_id){
 $orderId=$_GET['orderId'];
 $status=$_GET['sel1'];
-$currentOrder=Order::find(12);
+$currentOrder=Order::find($orderId);
         $currentOrder->status=$status;
         $currentOrder->save();
         return back()->with('success', 'Order status updated');;

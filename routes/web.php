@@ -120,34 +120,38 @@ Route::prefix('/home')->group(function () {
     Route::get('/basicTheme/addToCart/{site_id}/{product_id}','cartsController@addToCart');
 
 
-    Route::get('/checkout/{id}', function($id) {
-        return view('checkout')->with('id',$id);
-    });
+    Route::get('/checkout/{customer_id}/{site_id}', 'customersController@showCustomerDetails');
 
     Route::get('/basicTheme/AddCheckOut/{site_id}','ordersController@addToOrder');
 
     Route::get('/showAllOrders/{id}', 'ordersController@showOrders');
 
     Route::get('/addCustomers/{id}', function ($id) {
-        return view('addCustomers')->with('id',$id);
+        return view('addCustomers')->with('site_id',$id);
     });
     Route::get('/addCustomer/{id}','customersController@insertCustomer');
 
     Route::get('/showAllOrders/updateStatus/{id}/','ordersController@updateStatus');
 
     Route::get('/basicTheme/logout/{id}', 'customersController@logout');
+
+    Route::get('/basicTheme/cart/{id}', 'cartsController@showCart');
+
+    Route::get('/basicTheme/removeFromCart/{site_id}/{id}', 'cartsController@deleteProductFromCart');
+
+    Route::get('/searchOrder/{id}', 'ordersController@searchOrders');
 });
 
 
 Route::get('/basicTheme/{id}', 'themesController@getTheme');
-Route::get('/addCustomers/{id}', function ($id) {
-    return view('addCustomers')->with('id',$id);
-});
+Route::get('/basicTheme/addCustomers/{id}','themesController@getTheme1');
+
+
 Route::get('/addCustomer/{id}','customersController@insertCustomer');
 Route::post('/customerLogin/login/{site_id}','customersController@login');
 
-Route::get('/home/{id}', function($id) {
-    return view('home')->with('id',$id);
+Route::get('/home/{id}', function($site_id) {
+    return view('home')->with('id',$site_id);
 });
 
 Route::get('/addNewSite', function () {
@@ -155,9 +159,9 @@ Route::get('/addNewSite', function () {
 });
 
 
-Route::get('/customerLogin/{site_id}', function($site_id) {
-    return view('customerLogin')->with('site_id',$site_id);
-});
+Route::get('/customerLogin/{site_id}','themesController@getTheme2');
+
+
 
 Route::get('/dashBoard','siteController@showCurrentUserSites');
 

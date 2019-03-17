@@ -100,54 +100,75 @@
             <div class="card-header">Customer Registration</div>
             <div class="card-body">
 
-                <form method="POST" action="/customerLogin/login/{{$site_id}}">
-                    @csrf
+        <form method="GET" action="/addCustomer/{{$site_id}}">
 
-                    <div class="form-group row">
-                        <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+            <div class="form-group col-lg-6">
+                <label >First Name</label>
+                <input type="text" class="form-control" id="firstName"  name="firstName">
+            </div>
+            <div class="form-group col-lg-6">
+                <label >Last Name</label>
+                <input type="text" class="form-control" id="lastName"  name="lastName">
+            </div>
+            <div class="form-group col-lg-6">
+                <label >Email</label>
+                <input type="email" class="form-control" id="email"  name="email">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                        <div class="col-md-6">
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                <div class="col-md-6">
+                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                        <div class="col-md-6">
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                            @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
+                    @if ($errors->has('password'))
+                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                            @endif
-                        </div>
-                    </div>
+                    @endif
+                </div>
+            </div>
 
+            <div class="form-group col-md-6">
+                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
 
+                <div class="col-md-6">
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                </div>
+            </div>
+            <div class="form-group col-lg-6 ">
+                <label >Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber"  name="phoneNumber">
+            </div>
 
-                    <div class="form-group row mb-0">
-                        <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-primary">
-                                {{ __('Login') }}
-                            </button>
+            <div class="form-group col-lg-6">
+                <label >Address</label>
+                <input type="text" class="form-control" id="address"  name="address">
+            </div>
+            <div class="form-group col-lg-6">
+                <label >Apartment</label>
+                <input type="text" class="form-control" id="apt"  name="apt">
+            </div>
+            <div class="form-group col-lg-6">
+                <label >City</label>
+                <input type="text" class="form-control" id="city"  name="city">
+            </div>
+            <div class="form-group col-lg-6">
+                <label >Postal Code</label>
+                <input type="text" class="form-control" id="postalCode"  name="postalCode">
+            </div>
 
+            <div class="form-group col-lg-6">
+                <label >Country</label>
+                <input type="text" class="form-control" id="country"  name="country">
+            </div>
 
-                        </div>
-                    </div>
-                </form>
+            <button type="submit" class="btn btn-default"  >Submit</button>
+        </form>
 
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 </div>
 <!-- /.container -->

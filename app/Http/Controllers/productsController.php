@@ -77,9 +77,9 @@ $product->category_id=$category;
     }
 
     public function showProducts($site_id){
-        $allProducts=Product::where('site_id',$site_id)->Paginate(2);
+        $allProducts=Product::where('site_id',$site_id)->paginate(5);
 
-         $allProducts;
+        // return $allProducts;
         return view( 'showAllProducts')->with (['products'=>$allProducts,'site_id'=>$site_id]);
     }
 
@@ -118,7 +118,7 @@ $product->category_id=$category;
         }
 
         $productName=$_POST['productName'];
-        $productDescri=$_POST['productDescri'];
+       // $productDescri=$_POST['productDescri'];
         $price=$_POST['price'];
         $category=$_POST['sel1'];
 //return $category;
@@ -138,7 +138,7 @@ $product->category_id=$category;
 
         $product->site_id=$site_id;
         $product->product_name=$productName;
-        $product->product_description=$productDescri;
+       // $product->product_description=$productDescri;
 
         $product->image_path=$path;
         $product->price=$price;
@@ -161,7 +161,7 @@ $product->category_id=$category;
 
         $productDetail=$_GET['productName'];
 
-        $selectedProducts=Product::where('site_id',$id)->where('product_name', 'like','%'.$productDetail.'%')->orwhere('price', 'like','%'.$productDetail.'%')->orwhere('product_description', 'like','%'.$productDetail.'%')->Paginate(2);
+        $selectedProducts=Product::where('site_id',$id)->where('product_name', 'like','%'.$productDetail.'%')->orwhere('price', 'like','%'.$productDetail.'%')->orwhere('product_description', 'like','%'.$productDetail.'%')->get();
 
         return view('showAllProducts')->with (['products'=>$selectedProducts,'site_id'=>$id]);
     }

@@ -14,12 +14,13 @@
             html, body {
                 background-image:url({{url('images/wallpaper.jpg')}});
                 color: white;
-                font-family: 'Nunito', sans-serif;
+                font-family: "Playfair Display", Georgia, serif;
                 font-weight: 200;
                 height: 100%;
                 width:100%;
                 margin: 0;
                 background-size: 100% 100%;
+
             }
 
             .full-height {
@@ -44,6 +45,7 @@
 
             .content {
                 text-align: center;
+
             }
 
             .title {
@@ -70,7 +72,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/dashBoard') }}">Home</a>
+                        <a href="{{ url('/dashBoard') }} ">Home</a>
                     @else
                         <a href="{{ route('login') }} ">Login</a>
 

@@ -53,6 +53,7 @@
                     <input type="text" class="form-control" id="Sadd"  name="hero_text">
                     <br>
                     <button type="submit" class="btn btn-info">Update</button>
+                    <a href="/home/{{$id}}" class="btn btn-success" > Site DashBoard </a>
                     <br/>
                 </form>
                 <br><br>

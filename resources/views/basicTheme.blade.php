@@ -13,7 +13,25 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/shop-homepage.css') }}" rel="stylesheet">
+<style>
+    html,body{
+        font-family: "Playfair Display", Georgia, serif;
+    }
+    .ourProduct {
+        color: darkred;
+    }
+    .ourProduct1{
+        margin-top: 50px !important;
+    }
+    .navbar-brand,.hero_text{
+        text-transform: uppercase;
 
+    }
+
+    .hero_text{
+        color: yellow;
+    }
+</style>
 </head>
 
 <body>
@@ -48,12 +66,13 @@
         ?>
         @if(isset($_SESSION['customer_id']))
             <ul class="nav navbar-nav navbar-right">
-                <li>
-            <a href="/home/basicTheme/logout/{{$site_id}}"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
-                </li></ul>
+                <li><a href="/home/basicTheme/cart/{{$site_id}}"><span class="glyphicon glyphicon-shopping-cart" style="font-size:30px"></span> </a></li>
+                <li><a href="/home/basicTheme/logout/{{$site_id}}"><span class="glyphicon glyphicon-log-out" style="font-size:30px"></span> Logout</a></li>
+
+            </ul>
         @else
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/addCustomers/{{$site_id}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="/basicTheme/addCustomers/{{$site_id}}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                 <li><a href="/customerLogin/{{$site_id}}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         @endif
@@ -70,8 +89,8 @@
             <image src="{{$theme1->hero_image_path}}" height="600px" width="100%"/>
             <h2 class=" hero_text text-center">{{$theme1->hero_text}}</h2>
         </div>
-        <div class="row">
-            <h1 class="text-center">Our Products</h1>
+        <div class="row ourProduct1">
+            <h1 class="text-center ourProduct" >Our Products</h1>
         </div>
         <div class="row">
             @foreach($products as $singleProduct)

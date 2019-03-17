@@ -51,4 +51,19 @@ class themesController extends Controller
         return view('basicTheme')->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);
 
     }
+    public function getTheme1($site_id){
+
+    $currentTheme=Theme::where('site_id',$site_id)->first();
+    $currentProduct=Product::where('site_id',$site_id)->get();
+    return view('registerCustomer')->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);
+
+}
+
+public function getTheme2($site_id){
+
+    $currentTheme=Theme::where('site_id',$site_id)->first();
+
+    return view('customerLogin')->with(['theme1'=>$currentTheme,'site_id'=>$site_id]);
+
+}
 }

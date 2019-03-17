@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Customer;
 use App\Product;
 use App\Theme;
@@ -103,7 +104,7 @@ class customersController extends Controller
     public function searchCustomerByEmail($site_id){
 
         $customerPro=$_GET['custoPro'];
-        $selectedCustomer=Customer::where('email','like','%'.$customerPro.'%')->orwhere('first_name', 'like','%'.$customerPro.'%')->orwhere('last_name', 'like','%'.$customerPro.'%')->orwhere('phone_no', 'like','%'.$customerPro.'%')->orwhere('address', 'like','%'.$customerPro.'%')->orwhere('apt', 'like','%'.$customerPro.'%')->orwhere('city', 'like','%'.$customerPro.'%')->orwhere('postal_code', 'like','%'.$customerPro.'%')->orwhere('country', 'like','%'.$customerPro.'%')->Paginate(5);
+        $selectedCustomer=Customer::where('email','like','%'.$customerPro.'%')->orwhere('first_name', 'like','%'.$customerPro.'%')->orwhere('last_name', 'like','%'.$customerPro.'%')->orwhere('phone_no', 'like','%'.$customerPro.'%')->orwhere('address', 'like','%'.$customerPro.'%')->orwhere('apt', 'like','%'.$customerPro.'%')->orwhere('city', 'like','%'.$customerPro.'%')->orwhere('postal_code', 'like','%'.$customerPro.'%')->orwhere('country', 'like','%'.$customerPro.'%')->get();
         //return $selectedProduct;
         return view( 'showAllCustomers')->with (['customers'=>$selectedCustomer, 'site_id'=>$site_id,'property'=>$customerPro]);
     }
@@ -118,6 +119,11 @@ class customersController extends Controller
                 session_start();
             }
             $_SESSION["customer_id"]=$currentCustomer->id;
+            $currentCart=Cart::where('customer_id',$currentCustomer->id)->first();
+            if(!is_null($currentCart)){
+                $_SESSION['cart_id']= $currentCart->cart_id;
+
+            }
             $currentProduct=Product::where('site_id',$site_id)->get();
             return view('basicTheme')->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);
 
@@ -129,6 +135,7 @@ class customersController extends Controller
 
     }
 
+
     public function logout($site_id){
         session_start();
         session_unset();
@@ -136,5 +143,10 @@ class customersController extends Controller
         return redirect('basicTheme/'.$site_id);
     }
 
+public function showCustomerDetails($site_id,$customer_id){
+ $currentCustomer=Customer::find($customer_id);
+    $currentTheme=Theme::where('site_id',$site_id)->first();
 
+ return view('checkout')->with(['site_id'=>$site_id,'currentCustomer'=>$currentCustomer,'theme1'=>$currentTheme]);
+}
 }

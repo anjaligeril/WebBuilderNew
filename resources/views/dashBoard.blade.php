@@ -1,16 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container dashBoard">
         <div class="row ">
 
-            <div class="card col-lg-5">
-                <div class="card-header">Dashboard</div>
+            <div class="card col-lg-12">
+                <div class="card-header">List Of Sites</div>
+                <h5>Click & Work on your site </h5>
+                <ul>
                 @foreach($sites as $singleSite)
-                    <h6> <a href="/home/{{$singleSite->id}}">{{$singleSite->store_name}}</a>
-                   {{$singleSite->created_at->diffForHumans()}}</h6>
+                    <ol><h6 class="siteList"> <a href="/home/{{$singleSite->id}}">{{$singleSite->store_name}}</a>
+                   {{$singleSite->created_at->diffForHumans()}}</h6></ol>
                     @endforeach
-                <a href="addNewSite">Add New Site</a>
+
+                <ol><a href="addNewSite">Add New Site</a></ol>
+                </ul>
             </div>
         </div>
     </div>
