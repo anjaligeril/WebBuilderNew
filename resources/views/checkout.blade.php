@@ -14,7 +14,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/shop-homepage.css') }}" rel="stylesheet">
 
+    <style>
+        body{
+            font-family: "Playfair Display", Georgia, serif;
 
+        }
+        .container{
+            height:450px;
+        }
+        .card-header{
+            font-size: 23px;
+            font-weight: bold;
+
+            color: #23282e;
+        }
+        .card-body{
+
+            color:#2e353d;
+        }
+        footer{
+            height:50px;
+        }
+    </style>
 </head>
 
 <body>
@@ -87,58 +108,59 @@
         <div class="col-lg-5">
             <div class="card">
                 <div class="card-header"><h4>Customer Details</h4></div>
-
+<div class="card-body">
                 <h5>Name: {{$currentCustomer->first_name}} {{$currentCustomer->last_name}}</h5>
                 <h5>Address: {{$currentCustomer->address}}, {{$currentCustomer->apt}},{{$currentCustomer->city}}, {{$currentCustomer->postal_code}}</h5>
                 <h5>Email: {{$currentCustomer->email}} </h5>
                 <h5>Phone Number: {{$currentCustomer->phone_no}}</h5>
-                <a class="btn btn-success" href="/home/updateCustomerInfo/{{$currentCustomer->id}}/{{$site_id}}">Update</a>
-            </div>
+                <a class="btn btn-success" href="/home/updateCustomer/{{$currentCustomer->id}}/{{$site_id}}">Update</a>
+            </div></div>
         </div>
         <div class="col-lg-7">
 
             <div class="card">
                 <div class="card-header">Shipping Address</div>
+                <div class="card-body">
                 <form method="GET" action="/home/basicTheme/AddCheckOut/{{$site_id}}">
 
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-6">
                         <label >Full Name</label>
                         <input type="text" class="form-control" id="fullName"  name="fullName">
                     </div>
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-6">
                         <label >Email</label>
                         <input type="email" class="form-control" id="email"  name="email">
                     </div>
-                    <div class="form-group col-lg-10 ">
+                    <div class="form-group col-lg-6 ">
                         <label >Phone Number</label>
                         <input type="text" class="form-control" id="phoneNumber"  name="phoneNumber">
                     </div>
 
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-6">
                         <label >Address</label>
                         <input type="text" class="form-control" id="address"  name="address">
                     </div>
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-6">
                         <label >Apartment</label>
                         <input type="text" class="form-control" id="apt"  name="apt">
                     </div>
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-6">
                         <label >City</label>
                         <input type="text" class="form-control" id="city"  name="city">
                     </div>
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-6">
                         <label >Postal Code</label>
                         <input type="text" class="form-control" id="postalCode"  name="postalCode">
                     </div>
 
-                    <div class="form-group col-lg-10">
+                    <div class="form-group col-lg-6">
                         <label >Country</label>
                         <input type="text" class="form-control" id="country"  name="country">
                     </div>
 
                     <button type="submit" class="btn btn-default"  >Submit</button>
                 </form>
-
+                </div>
             </div>
         </div>
     </div>

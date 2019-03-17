@@ -149,4 +149,47 @@ public function showCustomerDetails($site_id,$customer_id){
 
  return view('checkout')->with(['site_id'=>$site_id,'currentCustomer'=>$currentCustomer,'theme1'=>$currentTheme]);
 }
+
+
+    public function updateCustomersSiteBefore($Customer_id,$site_id){
+        $selectedCustomer=Customer::find($Customer_id);
+        $currentTheme=Theme::where('site_id',$site_id)->first();
+        return view('updateCutomer')->with(['updateCustomer'=>$selectedCustomer,'site_id'=>$site_id,'theme1'=>$currentTheme]);
+    }
+
+    public function updateCustomersSiteAfter($Customer_id,$site_id){
+        $firstName=$_GET['firstName'];
+        $lastName=$_GET['lastName'];
+        $email=$_GET['email'];
+
+        $phoneNumber=$_GET['phoneNumber'];
+
+        $address=$_GET['address'];
+        $apt=$_GET['apt'];
+        $city=$_GET['city'];
+
+
+        $postalCode=$_GET['postalCode'];
+        $country=$_GET['country'];
+
+
+
+
+        $selectedcustomer=Customer::find($Customer_id);
+        $selectedcustomer->site_id=$site_id;
+        $selectedcustomer->first_name=$firstName;
+        $selectedcustomer->last_name=$lastName;
+        $selectedcustomer->email=$email;
+
+        $selectedcustomer->phone_no=$phoneNumber;
+        $selectedcustomer->address=$address;
+        $selectedcustomer->apt=$apt;
+        $selectedcustomer->city=$city;
+        $selectedcustomer->postal_code=$postalCode;
+        $selectedcustomer->country=$country;
+
+        $selectedcustomer->save();
+        return back()->with('success', 'Customer updated successfully');
+    }
+
 }

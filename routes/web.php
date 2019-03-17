@@ -94,7 +94,8 @@ Route::prefix('/home')->group(function () {
     Route::get('/deleteCustomer/{customer_id}','customersController@deleteCustomer');
 
     Route::get('/updateCustomerInfo/{customer_id}/{site_id}','customersController@updateCustomersBefore');
-
+    Route::get('/updateCustomer/{customer_id}/{site_id}','customersController@updateCustomersSiteBefore');
+    Route::get('/updateToCustomersTable/{customer_id}/{site_id}','customersController@updateCustomersSiteAfter');
     Route::get('/updateToCustomerTable/{customer_id}/{site_id}','customersController@updateCustomersAfter');
 
     Route::get('/addCategory/{site_id}','categoriesController@insertCategory');

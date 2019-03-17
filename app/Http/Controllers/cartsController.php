@@ -37,10 +37,15 @@ class cartsController extends Controller
            //return $currentProduct;
 
             $currentCart=Cart::where('cart_id',$_SESSION['cart_id'])->get();
+            $totalPrice=0;
+           foreach($currentCart as $singleCartItem) {
+               $totalPrice=$totalPrice+$singleCartItem->price;
+           }
+
            $currentTheme=Theme::where('site_id',$site_id)->first();
 
 
-           return view('cart')->with(['site_id'=>$site_id,'carts'=>$currentCart,'success'=>false,'theme1'=>$currentTheme]);
+           return view('cart')->with(['site_id'=>$site_id,'carts'=>$currentCart,'success'=>false,'theme1'=>$currentTheme,'price'=>$totalPrice]);
 
        }else{
         return Redirect::to('/customerLogin/'.$site_id);
@@ -52,7 +57,11 @@ class cartsController extends Controller
        Cart::destroy($id);
        $currentCart=Cart::where('cart_id',$_SESSION['cart_id'])->get();
        $currentTheme=Theme::where('site_id',$site_id)->first();
-       return view('cart')->with(['site_id'=>$site_id,'carts'=>$currentCart,'success'=>true,'theme1'=>$currentTheme]);
+       $totalPrice=0;
+       foreach($currentCart as $singleCartItem) {
+           $totalPrice=$totalPrice+$singleCartItem->price;
+       }
+       return view('cart')->with(['site_id'=>$site_id,'carts'=>$currentCart,'success'=>true,'theme1'=>$currentTheme,'price'=>$totalPrice]);
       // $currentTheme=Theme::where('site_id',$site_id)->first();
       // $currentProduct=Product::where('site_id',$site_id)->get();
       // return view('basicTheme')->with(['theme1'=>$currentTheme,'site_id'=>$site_id,'products'=>$currentProduct]);
@@ -62,6 +71,10 @@ class cartsController extends Controller
        session_start();
        $currentCart=Cart::where('cart_id',$_SESSION['cart_id'])->get();
        $currentTheme=Theme::where('site_id',$site_id)->first();
-       return view('cart')->with(['site_id'=>$site_id,'carts'=>$currentCart,'success'=>false,'theme1'=>$currentTheme]);
+       $totalPrice=0;
+       foreach($currentCart as $singleCartItem) {
+           $totalPrice=$totalPrice+$singleCartItem->price;
+       }
+       return view('cart')->with(['site_id'=>$site_id,'carts'=>$currentCart,'success'=>false,'theme1'=>$currentTheme,'price'=>$totalPrice]);
    }
 }

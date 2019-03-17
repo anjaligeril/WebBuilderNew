@@ -13,7 +13,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link href="{{ asset('css/shop-homepage.css') }}" rel="stylesheet">
-
+<style>
+    body{
+        font-family: "Playfair Display", Georgia, serif;
+    }
+</style>
 </head>
 
 <body>
@@ -108,8 +112,8 @@
                             @foreach($carts as $singleProduct)
                                 <tr>
 
-                                    <td></td>
-                                    <td></td>
+                                    <td>{{$singleProduct->product['product_name']}}</td>
+                                   <td><img src="{{$singleProduct->product['image_path']}}" height="100px" width="100px"></td>
                                     <td>{{$singleProduct->price}}</td>
                                     <td>{{$singleProduct->quantity}}</td>
                                     <td><a class="btn btn-danger "  href="/home/basicTheme/removeFromCart/{{$site_id}}/{{$singleProduct->id}}">Delete</a></td>
@@ -119,6 +123,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <h3>Total Price:${{$price}}</h3>
 
                     </div>
                 </div>
