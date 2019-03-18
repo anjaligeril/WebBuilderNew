@@ -14,9 +14,6 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -35,7 +32,7 @@
         }
 
          ul {
-             list-style-type: none;
+             
              margin: 0;
              padding: 0;
              width: 200px;
@@ -224,7 +221,7 @@ position: relative;
         }
         .searchHead{
             color:white;
-            font-size: 20px;
+            font-size: 23px;
         }
     </style>
 </head>

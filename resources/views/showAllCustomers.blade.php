@@ -82,7 +82,7 @@
                     <form method="GET" action="/home/searchCustomerName1/{{$site_id}}">
 
 
-                        <input type="text" class="col-6" id="custoPro"  name="custoPro" placeholder="enter the details customer " value="{{$property}}">
+                        <input type="text" class="col-6" id="custoPro"  name="custoPro" placeholder="Search " value="{{$property}}">
 
 
                         <button type="submit" class="btn btn-default"  >search</button>

@@ -99,7 +99,7 @@
                         <form method="GET" action="/home/searchProductName1/{{$site_id}}">
 
 
-                            <input type="text" class="col-6" id="productName"  name="productName" placeholder="enter the product name">
+                            <input type="text" class="col-6" id="productName"  name="productName" placeholder="Search">
 
 
                             <button type="submit" class="btn btn-default"  >search</button>
