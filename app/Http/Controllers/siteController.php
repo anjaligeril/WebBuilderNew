@@ -44,4 +44,11 @@ class siteController extends Controller
        return view('dashBoard')->with('sites',$currentSites);
     }
 
+    public function getSiteName($site_id){
+        session_start();
+        $currentSites=Site::find($site_id);
+        $_SESSION["store_name"]=$currentSites->store_name;
+        return view('home')->with('id',$site_id);
+    }
+
 }

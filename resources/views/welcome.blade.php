@@ -49,13 +49,13 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 60px;
             }
 
             .links > a {
                 color: white;
                 padding: 0 25px;
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: bold;
                 letter-spacing: .1rem;
                 text-decoration: none;

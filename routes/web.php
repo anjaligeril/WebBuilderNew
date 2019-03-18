@@ -151,9 +151,7 @@ Route::get('/basicTheme/addCustomers/{id}','themesController@getTheme1');
 Route::get('/addCustomer/{id}','customersController@insertCustomer');
 Route::post('/customerLogin/login/{site_id}','customersController@login');
 
-Route::get('/home/{id}', function($site_id) {
-    return view('home')->with('id',$site_id);
-});
+Route::get('/home/{id}', 'siteController@getSiteName');
 
 Route::get('/addNewSite', function () {
     return view('addSiteInformation');

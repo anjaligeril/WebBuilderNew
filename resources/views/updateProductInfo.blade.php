@@ -21,7 +21,12 @@
         <div class="row ">
             <div class="col-lg-3 col-md-3 ">
                 <div class="nav-side-menu">
-                    <div class="brand">Brand Logo</div>
+                    <?php
+                    if(!isset($_SESSION)) {
+                        session_start();
+                    }
+                    ?>
+                    <div class="brand">{{$_SESSION["store_name"]}}</div>
                     <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
                     <div class="menu-list">

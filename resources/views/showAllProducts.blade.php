@@ -37,7 +37,12 @@
 
                <div class="col-lg-3">
                    <div class="nav-side-menu">
-                       <div class="brand">Brand Logo</div>
+                       <?php
+                       if(!isset($_SESSION)) {
+                           session_start();
+                       }
+                       ?>
+                       <div class="brand">{{$_SESSION["store_name"]}}</div>
                        <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
 
                        <div class="menu-list">
@@ -90,7 +95,7 @@
 <div class="col-lg-9">
 
 
-                        <h5 class="">Search Product</h5>
+                        <h5 class="searchHead">Search Product</h5>
                         <form method="GET" action="/home/searchProductName1/{{$site_id}}">
 
 

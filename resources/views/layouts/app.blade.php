@@ -68,7 +68,7 @@ color:white !important;
             color: #23282e;
         }
 .card-body{
-    background-color: #e1ffff ;
+
     color:#2e353d;
 }
 .siteList a{
@@ -217,6 +217,14 @@ position: relative;
         }
         .AddProducts{
             font-family: "Playfair Display", Georgia, serif;
+        }
+        .brand{
+            text-transform: uppercase;
+            font-size: 30px !important;
+        }
+        .searchHead{
+            color:white;
+            font-size: 20px;
         }
     </style>
 </head>
