@@ -121,7 +121,7 @@
                             <input type="text" class="form-control" id="country"  name="country" value="{{$updateCustomer->country}}">
                         </div>
 
-                        <button type="submit" class="btn btn-default"  >Update</button>
+                        <button type="submit" class="btn btn-primary"  >Update</button>
                     </form>
 
                 </div>

@@ -13,7 +13,7 @@
                    {{$singleSite->created_at->diffForHumans()}}</h6></ol>
                     @endforeach
 
-                <ol><a href="addNewSite">Add New Site</a></ol>
+                <ol><a href="addNewSite" class="btn btn-primary">Add New Site</a></ol>
                 </ul>
             </div>
         </div>

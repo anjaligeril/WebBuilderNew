@@ -147,7 +147,7 @@
                             <input type="text" class="form-control" id="country"  name="country">
                         </div>
 
-                        <button type="submit" class="btn btn-success btn-lg text-center"  style="margin-left: 325px">Submit</button>
+                        <button type="submit" class="btn btn-primary btn-lg text-center"  style="margin-left: 325px">Submit</button>
                     </form>
                     </div>
                 </div>

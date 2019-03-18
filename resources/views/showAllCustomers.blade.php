@@ -85,7 +85,7 @@
                         <input type="text" class="col-6" id="custoPro"  name="custoPro" placeholder="Search " value="{{$property}}">
 
 
-                        <button type="submit" class="btn btn-default"  >search</button>
+                        <button type="submit" class="btn btn-primary"  >search</button>
                     </form>
 
 

@@ -18,6 +18,6 @@
                 {{ session('success') }}
             </div>
         @endif
-
+            <a class="btn btn-info" href="/home/basicTheme/{{$site_id}}">Continue shopping</a>
     </div>
 @endsection

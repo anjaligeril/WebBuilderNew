@@ -102,7 +102,7 @@
                             <input type="text" class="col-6" id="productName"  name="productName" placeholder="Search">
 
 
-                            <button type="submit" class="btn btn-default"  >search</button>
+                            <button type="submit" class="btn btn-primary"  >search</button>
                         </form>
 
 

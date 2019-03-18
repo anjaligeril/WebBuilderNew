@@ -86,7 +86,7 @@
                             <textarea type="text" class="form-control" id="category_desc"  name="category_desc" rows="5"> {{$updateCategory->category_description}}</textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-default"  >Submit</button>
+                        <button type="submit" class="btn btn-primary"  >Submit</button>
                     </form>
 
                 </div>

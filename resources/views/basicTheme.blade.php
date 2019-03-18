@@ -56,7 +56,7 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">{{$theme1->site_name}}</a>
+            <a class="navbar-brand" href="/home/basicTheme/{{$site_id}}">{{$theme1->site_name}}</a>
         </div>
 
         <?php
