@@ -52,15 +52,17 @@
 
                     <input type="text" class="form-control" id="Sadd"  name="hero_text">
                     <br>
-                    <button type="submit" class="btn btn-info">Update</button>
+                    <button type="submit" class="btn btn-info" style="margin-left: 80px">Update</button><br/>
+                    <br/>
                     <a href="/home/{{$id}}" class="btn btn-success" > Site DashBoard </a>
+                     <a href="/home/basicTheme/{{$id}}" class="btn btn-primary"> Visit Your Site</a>
                     <br/>
                 </form>
                 <br><br>
 
             </div>
             <div class="col-lg-9 theme">
-                <iframe src="http://localhost:8000/home/basicTheme/19" height="800px" width="880px"></iframe>
+                <iframe src="http://localhost:8000/home/basicTheme/{{$id}}" height="800px" width="880px"></iframe>
             </div>
 
 

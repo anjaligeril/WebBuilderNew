@@ -12,7 +12,7 @@
                     <form  method="POST" action="{{ route('register') }}">
                         {{csrf_field()}}
                         <div class="form-group col-sm-10">
-                            <label>{{ __('first_name') }}</label>
+                            <label>{{ __('First Name') }}</label>
 
 
                                 <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus>
@@ -26,7 +26,7 @@
 
 
                         <div class="form-group col-sm-10">
-                            <label>{{ __('last_name') }}</label>
+                            <label>{{ __('Last Name') }}</label>
 
                                 <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
 
@@ -36,12 +36,6 @@
                                     </span>
                                 @endif
                             </div>
-
-
-
-
-
-
 
                         <div class="form-group col-sm-10">
                             <label>Street Address:</label>
